@@ -22,4 +22,9 @@ public class Menu_Controller : MonoBehaviour
            Application.Quit();
     }
 
+    public void Volver()
+    {
+        SceneManager.LoadScene("Menus");
+    }
+
 }
