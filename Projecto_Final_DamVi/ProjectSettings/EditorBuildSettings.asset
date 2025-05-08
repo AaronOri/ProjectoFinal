@@ -15,8 +15,26 @@ EditorBuildSettings:
     path: Assets/Scenes/Menus.unity
     guid: 6d3eaab5b8bdb1143b775870c38fc984
   - enabled: 1
+    path: Assets/Scenes/DialogLevel_Inicial.unity
+    guid: 84694ed6d5ab8b541bd50c4d5ec354a2
+  - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: f9fe890525ca1a74da03b416c3476b41
+  - enabled: 1
+    path: Assets/Scenes/DialogLevel_2.unity
+    guid: 4565fd63fa743ab4284cd65ad5729e67
+  - enabled: 1
+    path: Assets/Scenes/Level2.unity
+    guid: c7a35b348f0a2c341b2f58b96cdada21
+  - enabled: 1
+    path: Assets/Scenes/DialogLevel_3.unity
+    guid: b051ed4920b63124ea9c17f99252c16c
+  - enabled: 1
+    path: Assets/Scenes/FinalLevel.unity
+    guid: 0c9d8e086da15f64396d20b8d096930d
+  - enabled: 1
+    path: Assets/Scenes/DialogLevel_Final.unity
+    guid: 2e3118fe53625d8478e1c4aab2769bfe
   - enabled: 1
     path: Assets/Scenes/NivelInfinito.unity
     guid: d39c467149bfc264c80d1921cf4dd6c1
