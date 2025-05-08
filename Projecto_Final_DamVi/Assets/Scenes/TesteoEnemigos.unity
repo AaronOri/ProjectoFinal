@@ -132,11 +132,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5844631516147679408, guid: f9f1d82b52ac1af4c907c1c4f2ecc44d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.01
+      value: -11.51
       objectReference: {fileID: 0}
     - target: {fileID: 5844631516147679408, guid: f9f1d82b52ac1af4c907c1c4f2ecc44d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.07
+      value: 0.16
       objectReference: {fileID: 0}
     - target: {fileID: 5844631516147679408, guid: f9f1d82b52ac1af4c907c1c4f2ecc44d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -424,11 +424,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c73281a2ded874d9d4bab0f7ff27ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  approachSpeed: 5
+  lateralSpeed: 3
+  lateralMoveTime: 2
+  exitSpeed: 3
+  cameraVerticalSpeed: 2
   radius: 2
   angularSpeed: 180
-  numberOfCircles: 2
-  circleCenter: {x: 0, y: 0}
-  exitSpeed: 3
+  numberOfCircles: 1
+  rotationSmoothSpeed: 10
 --- !u!1 &2023457950
 GameObject:
   m_ObjectHideFlags: 0

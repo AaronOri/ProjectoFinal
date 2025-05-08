@@ -2,46 +2,80 @@ using UnityEngine;
 
 public class CircleAndExitEnemy : MonoBehaviour
 {
+    [SerializeField] float approachSpeed = 5f;
     [SerializeField] float radius = 2f;
-    [SerializeField] float angularSpeed = 180f; // graus per segon
+    [SerializeField] float angularSpeed = 180f; // graus/s
     [SerializeField] int numberOfCircles = 2;
-    [SerializeField] Vector2 circleCenter = new Vector2(0f, 0f);
-    [SerializeField] float exitSpeed = 3f;
+    [SerializeField] float exitSpeed = 5f;
+    [SerializeField] float distanceToStartLoop = 0.5f;
+
+    private enum State { Approaching, Looping, Exiting }
+    private State currentState = State.Approaching;
 
     private float angle = 0f;
     private int circlesDone = 0;
-    private bool exiting = false;
-    private Vector3 center;
-
-    void Start()
-    {
-        center = circleCenter;
-    }
+    private Vector3 loopCenter;
+    private Vector3 loopStartOffset;
 
     void Update()
     {
-        if (!exiting)
+        float cameraVerticalSpeed = 2f;
+        transform.Translate(Vector3.up * cameraVerticalSpeed * Time.deltaTime);
+
+        switch (currentState)
         {
-            angle += angularSpeed * Time.deltaTime;
-            float angleRad = angle * Mathf.Deg2Rad;
+            case State.Approaching:
+                Approach();
+                break;
+            case State.Looping:
+                Loop();
+                break;
+            case State.Exiting:
+                Exit();
+                break;
+        }
+    }
 
-            Vector3 offset = new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad), 0) * radius;
-            transform.position = center + offset;
+    void Approach()
+    {
+        Vector3 cameraCenter = Camera.main.transform.position;
+        Vector3 centerTarget = new Vector3(cameraCenter.x, cameraCenter.y + 2f, 0f); // punt lleugerament a sobre del jugador
 
-            if (angle >= 360f)
+        Vector3 direction = (centerTarget - transform.position).normalized;
+        transform.position += direction * approachSpeed * Time.deltaTime;
+
+        if (Vector3.Distance(transform.position, centerTarget) < distanceToStartLoop)
+        {
+            // Comença el cercle a partir d'on estàs
+            loopCenter = transform.position + (Vector3.left * radius); // o right, segons la direcció que vulguis
+            loopStartOffset = transform.position - loopCenter;
+            angle = Mathf.Atan2(loopStartOffset.y, loopStartOffset.x) * Mathf.Rad2Deg;
+            currentState = State.Looping;
+        }
+    }
+
+    void Loop()
+    {
+        angle += angularSpeed * Time.deltaTime;
+        float angleRad = angle * Mathf.Deg2Rad;
+
+        Vector3 offset = new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad), 0f) * radius;
+        transform.position = loopCenter + offset;
+
+        if (angle >= 360f)
+        {
+            angle -= 360f;
+            circlesDone++;
+
+            if (circlesDone >= numberOfCircles)
             {
-                angle -= 360f;
-                circlesDone++;
-
-                if (circlesDone >= numberOfCircles)
-                {
-                    exiting = true;
-                }
+                currentState = State.Exiting;
             }
         }
-        else
-        {
-            transform.Translate(Vector3.left * exitSpeed * Time.deltaTime);
-        }
+    }
+
+    void Exit()
+    {
+        transform.position += Vector3.right * exitSpeed * Time.deltaTime;
     }
 }
