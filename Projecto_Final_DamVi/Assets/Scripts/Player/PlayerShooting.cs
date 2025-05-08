@@ -1,15 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
-    [SerializeField] GameObject bulletPrefab;     // Prefab del proyectil
-    [SerializeField] float bulletSpeed = 10f;     // Velocidad del disparo
-    [SerializeField] Transform firePoint;         // Punto desde donde se dispara
-    [SerializeField] float shootCooldown = 0.25f; // Tiempo mínimo entre disparos
+    public GameObject bulletPrefab;
+    public Transform firePoint;
+    public float bulletSpeed = 10f;
+    public float shootCooldown = 0.25f;
 
-    float cooldownTimer = 0f;
+    private float cooldownTimer;
+    private bool isTripleShot;
 
     void Update()
     {
@@ -17,19 +16,44 @@ public class PlayerShooting : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && cooldownTimer <= 0f)
         {
-            Shoot();
+            if (isTripleShot)
+                ShootTriple();
+            else
+                ShootSingle();
+
             cooldownTimer = shootCooldown;
         }
     }
 
-    void Shoot()
+    public void ActivateTripleShot(float duration)
+    {
+        isTripleShot = true;
+        Invoke(nameof(DeactivateTripleShot), duration);
+    }
+
+    void DeactivateTripleShot()
+    {
+        isTripleShot = false;
+    }
+
+    void ShootSingle()
     {
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+        bullet.GetComponent<Rigidbody2D>().velocity = Vector2.up * bulletSpeed;
+    }
 
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        if (rb != null)
+    void ShootTriple()
+    {
+        Vector3[] offsets = {
+            Vector3.zero,
+            new Vector3(-0.5f, 0.5f, 0),
+            new Vector3(0.5f, 0.5f, 0)
+        };
+
+        foreach (Vector3 offset in offsets)
         {
-            rb.velocity = Vector2.up * bulletSpeed;
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.position + offset, Quaternion.identity);
+            bullet.GetComponent<Rigidbody2D>().velocity = Vector2.up * bulletSpeed;
         }
     }
 }
