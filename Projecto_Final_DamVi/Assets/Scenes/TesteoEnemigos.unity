@@ -132,11 +132,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5844631516147679408, guid: f9f1d82b52ac1af4c907c1c4f2ecc44d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.51
+      value: 11.62
       objectReference: {fileID: 0}
     - target: {fileID: 5844631516147679408, guid: f9f1d82b52ac1af4c907c1c4f2ecc44d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.16
+      value: 5.07
       objectReference: {fileID: 0}
     - target: {fileID: 5844631516147679408, guid: f9f1d82b52ac1af4c907c1c4f2ecc44d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -424,15 +424,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c73281a2ded874d9d4bab0f7ff27ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  approachSpeed: 5
-  lateralSpeed: 3
-  lateralMoveTime: 2
-  exitSpeed: 3
-  cameraVerticalSpeed: 2
+  approachSpeed: 3
   radius: 2
-  angularSpeed: 180
+  angularSpeed: 120
   numberOfCircles: 1
-  rotationSmoothSpeed: 10
+  exitSpeed: 3
+  distanceToStartLoop: 0.7
 --- !u!1 &2023457950
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,6 +472,10 @@ PrefabInstance:
     - target: {fileID: 1543505750759967098, guid: bd2e856af502e1a42a599f5be4c28872, type: 3}
       propertyPath: m_Name
       value: Enemy2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1543505750759967098, guid: bd2e856af502e1a42a599f5be4c28872, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4044141466403428540, guid: bd2e856af502e1a42a599f5be4c28872, type: 3}
       propertyPath: m_LocalPosition.x
@@ -536,6 +537,10 @@ PrefabInstance:
     - target: {fileID: 94949321201434850, guid: cb928de926273bd469e9624a31df1849, type: 3}
       propertyPath: m_Name
       value: Enemy1
+      objectReference: {fileID: 0}
+    - target: {fileID: 94949321201434850, guid: cb928de926273bd469e9624a31df1849, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 553531750367599412, guid: cb928de926273bd469e9624a31df1849, type: 3}
       propertyPath: m_Enabled
