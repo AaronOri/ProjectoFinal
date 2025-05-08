@@ -1,79 +1,61 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
-    [SerializeField] GameObject bulletPrefab;     // Prefab del proyectil
-    [SerializeField] float bulletSpeed = 10f;     // Velocidad del disparo
-    [SerializeField] Transform firePoint;         // Punto desde donde se dispara
-    [SerializeField] float shootCooldown = 0.25f; // Tiempo mínimo entre disparos
+    public GameObject bulletPrefab;
+    public Transform firePoint;
+    public float bulletSpeed = 10f;
+    public float shootCooldown = 0.25f;
 
-    float cooldownTimer = 0f;
-    SimplePlayerMovement playerMovement; // Declaramos la variable
-
-    void Start()
-    {
-        // Si el SimplePlayerMovement está en otro GameObject, lo buscamos
-        playerMovement = GameObject.Find("Player").GetComponent<SimplePlayerMovement>();
-
-        if (playerMovement == null)
-        {
-            Debug.LogError("No se encontró el componente SimplePlayerMovement en el GameObject 'Player'.");
-        }
-    }
+    private float cooldownTimer;
+    private bool isTripleShot;
 
     void Update()
     {
-        if (playerMovement == null) return;  // Si no hay un componente SimplePlayerMovement, no hacemos nada.
-
         cooldownTimer -= Time.deltaTime;
 
         if (Input.GetKeyDown(KeyCode.Space) && cooldownTimer <= 0f)
         {
-            Shoot();
+            if (isTripleShot)
+                ShootTriple();
+            else
+                ShootSingle();
+
             cooldownTimer = shootCooldown;
         }
-
-        // Si el power-up Quickshot está activo, reducir el tiempo de espera entre disparos
-        if (playerMovement.quickshotActive)
-        {
-            shootCooldown = 0.1f;  // Disparo más rápido
-        }
-        else
-        {
-            shootCooldown = 0.25f;  // Cadencia normal
-        }
     }
 
-    void Shoot()
+    public void ActivateTripleShot(float duration)
     {
-        // Si Tripleshot está activo, disparar tres proyectiles
-        if (playerMovement.tripleshotActive)
-        {
-            // Disparo central
-            InstantiateBullet(Vector3.zero);
-
-            // Disparos diagonales
-            InstantiateBullet(new Vector3(-0.5f, 0.5f, 0));  // Diagonal izquierda
-            InstantiateBullet(new Vector3(0.5f, 0.5f, 0));   // Diagonal derecha
-        }
-        else
-        {
-            // Si Tripleshot no está activo, disparar solo uno
-            InstantiateBullet(Vector3.zero);
-        }
+        isTripleShot = true;
+        Invoke(nameof(DeactivateTripleShot), duration);
     }
 
-    // Método para instanciar un proyectil
-    void InstantiateBullet(Vector3 offset)
+    void DeactivateTripleShot()
     {
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position + offset, Quaternion.identity);
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        if (rb != null)
+        isTripleShot = false;
+    }
+
+    void ShootSingle()
+    {
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+        bullet.GetComponent<Rigidbody2D>().velocity = Vector2.up * bulletSpeed;
+    }
+
+    void ShootTriple()
+    {
+        Vector3[] offsets = {
+            Vector3.zero,
+            new Vector3(-0.5f, 0.5f, 0),
+            new Vector3(0.5f, 0.5f, 0)
+        };
+
+        foreach (Vector3 offset in offsets)
         {
-            rb.velocity = Vector2.up * bulletSpeed;
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.position + offset, Quaternion.identity);
+            bullet.GetComponent<Rigidbody2D>().velocity = Vector2.up * bulletSpeed;
         }
     }
 }
+
 
