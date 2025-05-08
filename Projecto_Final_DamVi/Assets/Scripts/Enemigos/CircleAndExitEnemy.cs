@@ -16,6 +16,12 @@ public class CircleAndExitEnemy : MonoBehaviour
     private int circlesDone = 0;
     private Vector3 loopCenter;
     private Vector3 loopStartOffset;
+    private Quaternion initialRotation;
+
+    void Start()
+    {
+        initialRotation = transform.rotation;
+    }
 
     void Update()
     {
@@ -46,7 +52,6 @@ public class CircleAndExitEnemy : MonoBehaviour
 
         if (Vector3.Distance(transform.position, centerTarget) < distanceToStartLoop)
         {
-            // Comença el cercle a partir d'on estàs
             loopCenter = transform.position + (Vector3.left * radius); // o right, segons la direcció que vulguis
             loopStartOffset = transform.position - loopCenter;
             angle = Mathf.Atan2(loopStartOffset.y, loopStartOffset.x) * Mathf.Rad2Deg;
@@ -56,15 +61,17 @@ public class CircleAndExitEnemy : MonoBehaviour
 
     void Loop()
     {
-        angle += angularSpeed * Time.deltaTime;
+        angle -= angularSpeed * Time.deltaTime; // Sentit horari
         float angleRad = angle * Mathf.Deg2Rad;
 
         Vector3 offset = new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad), 0f) * radius;
         transform.position = loopCenter + offset;
 
-        if (angle >= 360f)
+        transform.rotation = Quaternion.Euler(0f, 0f, angle); // Rotació visual horària
+
+        if (angle <= -360f)
         {
-            angle -= 360f;
+            angle += 360f;
             circlesDone++;
 
             if (circlesDone >= numberOfCircles)
@@ -74,8 +81,10 @@ public class CircleAndExitEnemy : MonoBehaviour
         }
     }
 
+
     void Exit()
     {
-        transform.position += Vector3.right * exitSpeed * Time.deltaTime;
+        transform.position += Vector3.down * exitSpeed * Time.deltaTime;
     }
 }
+
