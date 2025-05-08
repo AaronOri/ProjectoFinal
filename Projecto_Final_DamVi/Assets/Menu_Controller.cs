@@ -27,4 +27,8 @@ public class Menu_Controller : MonoBehaviour
         SceneManager.LoadScene("Menus");
     }
 
+    public void Scores()
+    {
+        SceneManager.LoadScene("HighScores");
+    }
 }

@@ -181,8 +181,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 0000000
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
-  m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 9c2398d4ec059294fab6fb2a593288f2, type: 2}
+  m_sharedMaterial: {fileID: 574734899722441982, guid: 9c2398d4ec059294fab6fb2a593288f2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -306,8 +306,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 3136003055489151492, guid: dfa800716817a0f44b4c93be8d4c9793, type: 3}
-  bulletSpeed: 10
   firePoint: {fileID: 930606824}
+  bulletSpeed: 10
   shootCooldown: 0.35
 --- !u!114 &441367409
 MonoBehaviour:
@@ -325,6 +325,11 @@ MonoBehaviour:
   verticalScrollSpeed: 0
   verticalControlAmount: 4
   leanAngle: 15
+  isInvincible: 0
+  invincibilityDuration: 5
+  quickshotActive: 0
+  quickshotDuration: 5
+  tripleshotActive: 0
 --- !u!212 &441367410
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -867,8 +872,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Pts: '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
-  m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 9c2398d4ec059294fab6fb2a593288f2, type: 2}
+  m_sharedMaterial: {fileID: 574734899722441982, guid: 9c2398d4ec059294fab6fb2a593288f2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
