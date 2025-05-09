@@ -398,7 +398,7 @@ MonoBehaviour:
   - {fileID: 1172378416001331391, guid: ec74f170e9e05304f90c5f3ae96c4b40, type: 3}
   - {fileID: 4045902070648317162, guid: 994999195fcbe534f8e23572bcd8e3c9, type: 3}
   - {fileID: 57745653681379643, guid: 6e5c7ceadaea3644cb6472b53d923134, type: 3}
-  spawnInterval: 5
+  spawnInterval: 3
 --- !u!61 &1966678075
 BoxCollider2D:
   m_ObjectHideFlags: 0

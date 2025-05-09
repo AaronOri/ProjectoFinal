@@ -83,7 +83,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1543505750759967098, guid: bd2e856af502e1a42a599f5be4c28872, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6879211637037964601}
+    - targetCorrespondingSourceObject: {fileID: 1543505750759967098, guid: bd2e856af502e1a42a599f5be4c28872, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 55598418340602995}
   m_SourcePrefab: {fileID: 100100000, guid: bd2e856af502e1a42a599f5be4c28872, type: 3}
+--- !u!4 &1536256400533484844 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4044141466403428540, guid: bd2e856af502e1a42a599f5be4c28872, type: 3}
+  m_PrefabInstance: {fileID: 3264630558257360272}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4045902070648317162 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1543505750759967098, guid: bd2e856af502e1a42a599f5be4c28872, type: 3}
@@ -124,3 +132,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.16
+--- !u!114 &55598418340602995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4045902070648317162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f42a2012c76420439f0bb26ee0db7a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 3136003055489151492, guid: dfa800716817a0f44b4c93be8d4c9793, type: 3}
+  bulletSpeed: 10
+  firePoint: {fileID: 1536256400533484844}
+  isPlayer: 0
+  shootCooldown: 1.25
