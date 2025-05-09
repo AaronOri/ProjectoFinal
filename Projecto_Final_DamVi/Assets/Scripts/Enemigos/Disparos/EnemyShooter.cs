@@ -7,8 +7,14 @@ public class EnemyShooter : MonoBehaviour
     [SerializeField] Transform firePoint;
     [SerializeField] bool isPlayer = true;
     [SerializeField] float shootCooldown = 0.25f;
+    [SerializeField] float initialCooldown = 2f; //  Ahora configurable en el editor
 
-    float cooldownTimer = 0f;
+    float cooldownTimer;
+
+    void Start()
+    {
+        cooldownTimer = initialCooldown; //  Usamos el valor del Inspector
+    }
 
     void Update()
     {
@@ -42,3 +48,4 @@ public class EnemyShooter : MonoBehaviour
         }
     }
 }
+
