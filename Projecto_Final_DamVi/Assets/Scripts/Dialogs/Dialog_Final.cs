@@ -119,7 +119,7 @@ public class Dialog_Final : MonoBehaviour
         dialogueEnded = true;
         if (nextButtonText != null)
         {
-            nextButtonText.text = "Bien Hecho!"; // Change button text to indicate continuing
+            nextButtonText.text = "Bien HechoGameManager!"; // Change button text to indicate continuing
         }
     }
 }
