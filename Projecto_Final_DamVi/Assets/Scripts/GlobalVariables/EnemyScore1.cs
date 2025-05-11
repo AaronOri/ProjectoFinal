@@ -1,3 +1,7 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,10 +23,17 @@ public class EnemyScore1 : MonoBehaviour
             // Destrueix la bala
             Destroy(other.gameObject);
 
+            // 🔥 Mostrar explosió
+            if (ExplosionSpawner.Instance != null)
+            {
+                ExplosionSpawner.Instance.SpawnExplosion(transform.position);
+            }
+
             // Destrueix aquest enemic
             Destroy(gameObject);
         }
     }
 }
+
 
 

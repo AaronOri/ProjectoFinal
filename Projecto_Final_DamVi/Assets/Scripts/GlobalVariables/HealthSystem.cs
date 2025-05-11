@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -40,9 +40,14 @@ public class PlayerHealth : MonoBehaviour
     private void Morir()
     {
         Debug.Log("Jugador ha mort!");
-        // Aquí pots afegir explosió, desactivar jugador, pantalla de Game Over, etc.
+
+        // ðŸ”¥ Mostrar explosiÃ³
+        if (ExplosionSpawner.Instance != null)
+        {
+            ExplosionSpawner.Instance.SpawnExplosion(transform.position);
+        }
+
+        // Desactivar jugador
         gameObject.SetActive(false);
     }
 }
-
-
