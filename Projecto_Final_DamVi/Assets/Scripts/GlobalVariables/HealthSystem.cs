@@ -43,6 +43,12 @@ public class PlayerHealth : MonoBehaviour
         // Aquí pots afegir explosió, desactivar jugador, pantalla de Game Over, etc.
         gameObject.SetActive(false);
     }
+
+    public int GetCurrentLives()
+    {
+        return videsActuals;
+    }
+
 }
 
 
