@@ -3,16 +3,16 @@ using UnityEngine.SceneManagement;
 
 public class Dialog_TimerToScene : MonoBehaviour
 {
-    [Tooltip("Tiempo en segundos tras el cual se cargará la escena automáticamente.")]
+    [SerializeField]
     public float countdownTime = 30f; // Tiempo para la cuenta regresiva
 
-    [Tooltip("Nombre de la escena a cargar después de que termine el temporizador.")]
-    public string nextSceneName; // Escena tras temporizador (opcional)
+    [SerializeField]
+    public string nextSceneName; // Escena tras temporizador 
 
-    [Tooltip("Nombre de la escena a cargar si se acaban las vidas.")]
-    public string noLivesSceneName; // Escena para cuando no quedan vidas (opcional)
+    [SerializeField]
+    public string noLivesSceneName; // Escena para cuando no quedan vidas 
 
-    [Tooltip("Referencia al script PlayerHealth para obtener las vidas.")]
+    [SerializeField]
     public PlayerHealth playerHealth; // Referencia directa al script que maneja las vidas
 
     private float countdownTimer;
@@ -61,10 +61,7 @@ public class Dialog_TimerToScene : MonoBehaviour
         {
             SceneManager.LoadScene(nextSceneName);
         }
-        else
-        {
-            Debug.Log("No se cargará la siguiente escena porque nextSceneName no está especificada.");
-        }
+        
     }
 
     private void LoadSceneNoLives()
@@ -77,9 +74,6 @@ public class Dialog_TimerToScene : MonoBehaviour
         {
             SceneManager.LoadScene(noLivesSceneName);
         }
-        else
-        {
-            Debug.Log("No se cargará la escena de 'sin vidas' porque noLivesSceneName no está especificada.");
-        }
+       
     }
 }
