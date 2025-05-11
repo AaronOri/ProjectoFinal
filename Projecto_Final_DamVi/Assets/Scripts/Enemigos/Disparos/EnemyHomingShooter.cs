@@ -29,14 +29,20 @@ public class EnemyHomingShooter : MonoBehaviour
 
         if (cooldownTimer <= 0f)
         {
-            Shoot(Vector2.up);
+            Vector2 directionToPlayer = player.position - firePoint.position;
+            Shoot(directionToPlayer);
             cooldownTimer = shootCooldown;
         }
     }
 
     void Shoot(Vector2 direction)
     {
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+        // Calcula el ángulo hacia el jugador
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+        Quaternion rotation = Quaternion.Euler(0, 0, angle);
+
+        // Instancia la bala con rotación correcta
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         if (rb != null)
         {
