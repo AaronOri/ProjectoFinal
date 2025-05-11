@@ -703,6 +703,7 @@ GameObject:
   - component: {fileID: 761389937}
   - component: {fileID: 761389936}
   - component: {fileID: 761389939}
+  - component: {fileID: 761389940}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -805,6 +806,20 @@ MonoBehaviour:
   speed: 2
   posicion_inicial: -10
   posicion_final: 50
+--- !u!114 &761389940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761389935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 619aa4c92c98cb741a1d64fec97b62ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noLivesSceneName: GameOver_Scene
+  playerHealth: {fileID: 937986096}
 --- !u!1 &903913316
 GameObject:
   m_ObjectHideFlags: 0
@@ -1519,7 +1534,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1758626008}
-  - component: {fileID: 1758626007}
+  - component: {fileID: 1758626009}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1527,19 +1542,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1758626007
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1758626006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39e0855d47c8d8843a3d4451426ff813, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoreText: {fileID: 364528532}
 --- !u!4 &1758626008
 Transform:
   m_ObjectHideFlags: 0
@@ -1555,6 +1557,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1758626009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1758626006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39e0855d47c8d8843a3d4451426ff813, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHealth: {fileID: 0}
 --- !u!1 &1813006881
 GameObject:
   m_ObjectHideFlags: 0

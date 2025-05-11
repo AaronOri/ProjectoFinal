@@ -339,6 +339,7 @@ GameObject:
   - component: {fileID: 551286378}
   - component: {fileID: 551286377}
   - component: {fileID: 551286380}
+  - component: {fileID: 551286381}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -441,6 +442,22 @@ MonoBehaviour:
   speed: 2
   posicion_inicial: -20
   posicion_final: 42
+--- !u!114 &551286381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551286376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52e9de950269c0145844a94b1a5479e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  countdownTime: 150
+  nextSceneName: DialogLevel_2
+  noLivesSceneName: GameOver_Scene
+  playerHealth: {fileID: 1345864704}
 --- !u!1 &637816897
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,7 +692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39e0855d47c8d8843a3d4451426ff813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 1182677878}
+  playerHealth: {fileID: 0}
 --- !u!4 &694995261
 Transform:
   m_ObjectHideFlags: 0
