@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8964487712413077878, guid: f9f1d82b52ac1af4c907c1c4f2ecc44d, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -85,6 +89,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8964487712413077878, guid: f9f1d82b52ac1af4c907c1c4f2ecc44d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2176211637770014297}
+    - targetCorrespondingSourceObject: {fileID: 8964487712413077878, guid: f9f1d82b52ac1af4c907c1c4f2ecc44d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -6924634092791763413}
   m_SourcePrefab: {fileID: 100100000, guid: f9f1d82b52ac1af4c907c1c4f2ecc44d, type: 3}
 --- !u!1 &57745653681379643 stripped
 GameObject:
@@ -160,6 +167,20 @@ MonoBehaviour:
   firePoint: {fileID: 3294708773984471293}
   shootCooldown: 1.25
   stopShootingAfter: 6
+  bulletSpeed: 10
+--- !u!114 &-6924634092791763413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57745653681379643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9734803482b5864a91ec67624093b83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifespan: 10
 --- !u!4 &3294708773984471293 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5844631516147679408, guid: f9f1d82b52ac1af4c907c1c4f2ecc44d, type: 3}

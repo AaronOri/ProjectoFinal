@@ -5,18 +5,27 @@ public class DropAndExitEnemyMovement : MonoBehaviour
     [SerializeField] float dropSpeed = 2f;
     [SerializeField] float waitTime = 2f;
     [SerializeField] float sideExitSpeed = 3f;
+    [SerializeField] bool randomizeExitDirection = true;
     [SerializeField] bool exitLeft = true;
 
     private float timer = 0f;
     private bool waiting = false;
     private bool exiting = false;
 
+    void Start()
+    {
+        if (randomizeExitDirection)
+        {
+            exitLeft = Random.value < 0.5f; // 50% de probabilidad
+        }
+    }
+
     void Update()
     {
         if (!waiting && !exiting)
         {
             transform.Translate(Vector3.down * dropSpeed * Time.deltaTime);
-            if (transform.position.y <= Camera.main.transform.position.y +4) // Arribat al punt mig
+            if (transform.position.y <= Camera.main.transform.position.y + 4) // Llega al punto medio
             {
                 waiting = true;
                 timer = waitTime;
