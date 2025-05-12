@@ -181,8 +181,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 0000000
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9c2398d4ec059294fab6fb2a593288f2, type: 2}
-  m_sharedMaterial: {fileID: 574734899722441982, guid: 9c2398d4ec059294fab6fb2a593288f2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
+  m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1404,7 +1404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39e0855d47c8d8843a3d4451426ff813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 126936746}
+  playerHealth: {fileID: 0}
 --- !u!4 &1123718845
 Transform:
   m_ObjectHideFlags: 0
@@ -1609,8 +1609,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Pts: '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9c2398d4ec059294fab6fb2a593288f2, type: 2}
-  m_sharedMaterial: {fileID: 574734899722441982, guid: 9c2398d4ec059294fab6fb2a593288f2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
+  m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
