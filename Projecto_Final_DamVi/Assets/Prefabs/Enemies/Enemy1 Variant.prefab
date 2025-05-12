@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3181050512620720420, guid: cb928de926273bd469e9624a31df1849, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3181050512620720420, guid: cb928de926273bd469e9624a31df1849, type: 3}
       propertyPath: m_LocalRotation.w
@@ -82,7 +82,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6117007649229127802, guid: cb928de926273bd469e9624a31df1849, type: 3}
       propertyPath: exitLeft
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6117007649229127802, guid: cb928de926273bd469e9624a31df1849, type: 3}
+      propertyPath: dropSpeed
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6117007649229127802, guid: cb928de926273bd469e9624a31df1849, type: 3}
+      propertyPath: downwardSpeed
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -171,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9734803482b5864a91ec67624093b83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifespan: 10
+  lifespan: 15
 --- !u!114 &238540619650225548
 MonoBehaviour:
   m_ObjectHideFlags: 0

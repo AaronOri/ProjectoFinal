@@ -8,12 +8,12 @@ public class Menu_Controller : MonoBehaviour
    
     public void Jugar()
     {
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene("InsertName_Histori");
     }
 
     public void Inf()
     {
-        SceneManager.LoadScene("NivelInfinito");
+        SceneManager.LoadScene("InsertName_Infiniti");
     }
 
 

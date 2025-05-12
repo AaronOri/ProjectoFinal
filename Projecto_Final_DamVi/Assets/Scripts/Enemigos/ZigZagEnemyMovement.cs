@@ -2,15 +2,16 @@ using UnityEngine;
 
 public class ZigZagEnemyMovement : MonoBehaviour
 {
-    [SerializeField] float speed = 2f;
-    [SerializeField] float amplitude = 2f;
-    [SerializeField] float frequency = 2f;
+    [SerializeField] float speed = 2f;             // Velocidad general del movimiento
+    [SerializeField] float amplitude = 2f;         // Amplitud del zigzag horizontal
+    [SerializeField] float frequency = 2f;         // Frecuencia del zigzag
+    [SerializeField] float verticalSpeed = 1f;     // Velocidad constante hacia abajo en el eje Y
 
-    private Vector3 startPosition;
-    private float previousZigzag = 0f;
-    private bool goingRight = true;
+    private Vector3 startPosition;                   // Posición inicial del enemigo
+    private float previousZigzag = 0f;               // Valor anterior para detectar cambio de dirección
+    private bool goingRight = true;                   // Dirección actual del zigzag
 
-    // Variable per controlar l'angle de gir
+    // Ángulo actual de rotación para girar el sprite al cambiar de dirección
     private float currentRotationAngle = -90f;
 
     void Start()
@@ -21,24 +22,27 @@ public class ZigZagEnemyMovement : MonoBehaviour
 
     void Update()
     {
+        // Valor actual del zigzag horizontal
         float currentZigzag = Mathf.Sin(Time.time * frequency);
         float zigzag = currentZigzag * amplitude;
 
-        // Detecta canvi de direcció
+        // Detectar cambio de dirección en el zigzag
         if ((goingRight && currentZigzag < 0) || (!goingRight && currentZigzag > 0))
         {
-            // Canvi de direcció: gira el sprite amb l'angle actual
+            // Girar el sprite al cambiar dirección
             transform.Rotate(0f, 0f, currentRotationAngle);
             goingRight = !goingRight;
 
-            // Alterna l'angle de gir per la propera vegada
+            // Invertir ángulo para próximo giro
             currentRotationAngle = -currentRotationAngle;
         }
 
-        Vector3 movement = new Vector3(zigzag, -1f, 0f).normalized * speed * Time.deltaTime;
+        // Calculamos el vector de movimiento combinando zigzag horizontal y descenso vertical constante
+        Vector3 movement = new Vector3(zigzag, -verticalSpeed, 0f).normalized * speed * Time.deltaTime;
+
+        // Aplicamos el movimiento en el espacio mundial
         transform.Translate(movement, Space.World);
 
         previousZigzag = currentZigzag;
     }
 }
-

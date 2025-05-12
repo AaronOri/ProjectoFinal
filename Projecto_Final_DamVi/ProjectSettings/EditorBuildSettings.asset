@@ -33,6 +33,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Level1.unity
     guid: f9fe890525ca1a74da03b416c3476b41
   - enabled: 1
+    path: Assets/Scenes/InsertName_Histori.unity
+    guid: 175c10a52aeb072499beb323a9612e93
+  - enabled: 1
+    path: Assets/Scenes/InsertName_Infiniti.unity
+    guid: a9b84bbd02b23fc489e28182fc99e292
+  - enabled: 1
     path: Assets/Scenes/Level2.unity
     guid: c7a35b348f0a2c341b2f58b96cdada21
   - enabled: 1

@@ -454,7 +454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52e9de950269c0145844a94b1a5479e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countdownTime: 10
+  countdownTime: 150
   nextSceneName: DialogLevel_2
   noLivesSceneName: GameOver_Scene
   playerHealth: {fileID: 1345864704}
@@ -693,6 +693,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHealth: {fileID: 0}
+  sceneToResetScore: Menus
 --- !u!4 &694995261
 Transform:
   m_ObjectHideFlags: 0
@@ -941,8 +942,8 @@ Transform:
   m_GameObject: {fileID: 1077220978}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.086787105, y: 6.51, z: 10}
-  m_LocalScale: {x: 16.52718, y: 1.9124999, z: 1}
+  m_LocalPosition: {x: -0.086787105, y: 5.62, z: 10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 551286379}
@@ -964,6 +965,7 @@ MonoBehaviour:
   - {fileID: 4045902070648317162, guid: 994999195fcbe534f8e23572bcd8e3c9, type: 3}
   - {fileID: 57745653681379643, guid: 6e5c7ceadaea3644cb6472b53d923134, type: 3}
   spawnInterval: 3
+  spawnZoneCollider: {fileID: 1077220981}
 --- !u!61 &1077220981
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -996,7 +998,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.06387329, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1007,7 +1009,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 16.457321, y: 1}
   m_EdgeRadius: 0
 --- !u!212 &1077220982
 SpriteRenderer:

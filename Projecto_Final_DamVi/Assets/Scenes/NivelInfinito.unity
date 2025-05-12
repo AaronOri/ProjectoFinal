@@ -150,8 +150,8 @@ Transform:
   m_GameObject: {fileID: 31739902}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.16, y: 6.62, z: 10}
-  m_LocalScale: {x: 16.52718, y: 1.9124999, z: 1}
+  m_LocalPosition: {x: -0.16, y: 5.41, z: 10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 761389938}
@@ -173,6 +173,7 @@ MonoBehaviour:
   - {fileID: 4045902070648317162, guid: 994999195fcbe534f8e23572bcd8e3c9, type: 3}
   - {fileID: 57745653681379643, guid: 6e5c7ceadaea3644cb6472b53d923134, type: 3}
   spawnInterval: 3
+  spawnZoneCollider: {fileID: 31739905}
 --- !u!61 &31739905
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -205,7 +206,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.330832, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -216,7 +217,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 15.904666, y: 1}
   m_EdgeRadius: 0
 --- !u!212 &31739906
 SpriteRenderer:
@@ -987,7 +988,7 @@ Transform:
   m_GameObject: {fileID: 937986093}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.02, y: 0.07, z: 10}
+  m_LocalPosition: {x: 0.02, y: 0.11, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1570,6 +1571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHealth: {fileID: 0}
+  sceneToResetScore: Menus
 --- !u!1 &1813006881
 GameObject:
   m_ObjectHideFlags: 0

@@ -42,7 +42,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4044141466403428540, guid: bd2e856af502e1a42a599f5be4c28872, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4044141466403428540, guid: bd2e856af502e1a42a599f5be4c28872, type: 3}
       propertyPath: m_LocalRotation.w
@@ -71,6 +71,18 @@ PrefabInstance:
     - target: {fileID: 4044141466403428540, guid: bd2e856af502e1a42a599f5be4c28872, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240822675008022073, guid: bd2e856af502e1a42a599f5be4c28872, type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240822675008022073, guid: bd2e856af502e1a42a599f5be4c28872, type: 3}
+      propertyPath: amplitude
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240822675008022073, guid: bd2e856af502e1a42a599f5be4c28872, type: 3}
+      propertyPath: verticalSpeed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7758907822243081457, guid: bd2e856af502e1a42a599f5be4c28872, type: 3}
       propertyPath: m_Sprite
@@ -157,8 +169,8 @@ MonoBehaviour:
   bulletPrefab: {fileID: 3136003055489151492, guid: 706b45242b321764a89eb4464cc3a5fc, type: 3}
   bulletSpeed: 10
   firePoint: {fileID: 1536256400533484844}
-  shootCooldown: 2
-  stopShootingAfter: 6
+  shootCooldown: 3.5
+  stopShootingAfter: 15
 --- !u!114 &7770145403061897717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,7 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9734803482b5864a91ec67624093b83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifespan: 10
+  lifespan: 15
 --- !u!114 &4121844756158017199
 MonoBehaviour:
   m_ObjectHideFlags: 0

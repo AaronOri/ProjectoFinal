@@ -25,7 +25,7 @@ public class DropAndExitEnemyMovement : MonoBehaviour
         if (!waiting && !exiting)
         {
             transform.Translate(Vector3.down * dropSpeed * Time.deltaTime);
-            if (transform.position.y <= Camera.main.transform.position.y + 4) // Llega al punto medio
+            if (transform.position.y <= Camera.main.transform.position.y + 2) // Llega al punto medio
             {
                 waiting = true;
                 timer = waitTime;

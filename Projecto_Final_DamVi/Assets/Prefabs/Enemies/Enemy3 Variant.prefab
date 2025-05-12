@@ -30,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5844631516147679408, guid: f9f1d82b52ac1af4c907c1c4f2ecc44d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5844631516147679408, guid: f9f1d82b52ac1af4c907c1c4f2ecc44d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -168,8 +168,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 6646838235126009299, guid: 3bb470d304089804daf91be66203dfae, type: 3}
   firePoint: {fileID: 3294708773984471293}
-  shootCooldown: 2
-  stopShootingAfter: 6
+  shootCooldown: 2.5
+  stopShootingAfter: 8
   bulletSpeed: 10
 --- !u!114 &-6924634092791763413
 MonoBehaviour:
@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9734803482b5864a91ec67624093b83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifespan: 10
+  lifespan: 15
 --- !u!114 &2257169717553778299
 MonoBehaviour:
   m_ObjectHideFlags: 0

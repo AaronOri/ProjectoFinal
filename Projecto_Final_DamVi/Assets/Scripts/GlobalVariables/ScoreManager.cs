@@ -11,10 +11,14 @@ public class ScoreManager : MonoBehaviour
     private TextMeshProUGUI scoreText; // Referencia al texto del marcador
     private int currentScore = 0;
 
-    private string scoreTextObjectName = "PuntosTot"; 
+    private string scoreTextObjectName = "PuntosTot";
 
     [SerializeField]
     public PlayerHealth playerHealth;
+
+    [Tooltip("Nombre de la escena tras la cual se debe resetear la puntuación.")]
+    [SerializeField]
+    private string sceneToResetScore = "";
 
     private void Awake()
     {
@@ -47,6 +51,12 @@ public class ScoreManager : MonoBehaviour
         FindScoreText();
         UpdateScoreText();
         FindPlayerHealth();
+
+        // Resetea la puntuación si la escena cargada es la especificada
+        if (!string.IsNullOrEmpty(sceneToResetScore) && scene.name == sceneToResetScore)
+        {
+            ResetScore();
+        }
     }
 
     private void FindScoreText()
@@ -55,7 +65,10 @@ public class ScoreManager : MonoBehaviour
         if (scoreTextObject != null)
         {
             scoreText = scoreTextObject.GetComponent<TextMeshProUGUI>();
-            
+        }
+        else
+        {
+            Debug.LogWarning($"No se encontró el objeto de texto de puntuación con el nombre: {scoreTextObjectName}");
         }
     }
 
@@ -64,7 +77,6 @@ public class ScoreManager : MonoBehaviour
         if (playerHealth == null)
         {
             playerHealth = FindObjectOfType<PlayerHealth>();
-            
         }
     }
 
