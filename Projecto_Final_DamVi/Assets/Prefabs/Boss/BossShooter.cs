@@ -7,6 +7,7 @@ public class BossShooter : MonoBehaviour
     [SerializeField] private Transform[] firePoints;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private float fireRate = 1.5f;
+    [SerializeField] private float bulletSpeed = 5f;
 
     private float timer;
 
@@ -22,15 +23,24 @@ public class BossShooter : MonoBehaviour
 
     void Fire()
     {
-        foreach (Transform point in firePoints)
+        if (firePoints.Length == 0) return;
+
+        // Tria un fire point aleatori
+        Transform randomPoint = firePoints[Random.Range(0, firePoints.Length)];
+
+        // Instancia la bala i aplica velocitat cap avall
+        GameObject bullet = Instantiate(bulletPrefab, randomPoint.position, randomPoint.rotation);
+
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        if (rb != null)
         {
-            Instantiate(bulletPrefab, point.position, point.rotation);
+            rb.velocity = -randomPoint.up * bulletSpeed;
         }
     }
 
     public void EnterPhase2()
     {
-        fireRate *= 0.5f; // Doble de velocidad
+        fireRate *= 0.5f; // Doble de velocitat de dispar
     }
 }
 
