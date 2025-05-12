@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PowerupQuickshot : MonoBehaviour
 {
-    [SerializeField] private float effectDuration = 5f; // Duración del power-up
+    [SerializeField] private float effeDuration = 5f; // Duración del power-up
     private SimplePlayerMovement playerMovement;
 
     void Start()

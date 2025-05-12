@@ -149,7 +149,7 @@ Transform:
   m_GameObject: {fileID: 280691471}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.5453, y: 0.0683, z: 10}
+  m_LocalPosition: {x: -8.77, y: 0.0683, z: 10}
   m_LocalScale: {x: 0.3106, y: 10.104902, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -415,7 +415,7 @@ Transform:
   m_GameObject: {fileID: 551286376}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.47, y: 42, z: -10}
+  m_LocalPosition: {x: 0.47, y: -11.78, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -454,7 +454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52e9de950269c0145844a94b1a5479e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countdownTime: 150
+  countdownTime: 10
   nextSceneName: DialogLevel_2
   noLivesSceneName: GameOver_Scene
   playerHealth: {fileID: 1345864704}
@@ -485,7 +485,7 @@ Transform:
   m_GameObject: {fileID: 637816897}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.1656, y: -5.1753, z: 10}
+  m_LocalPosition: {x: 0.1656, y: -4.94, z: 10}
   m_LocalScale: {x: 23.631065, y: 0.3106, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -810,7 +810,7 @@ Transform:
   m_GameObject: {fileID: 965401256}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.5034, y: 0.0208, z: 10}
+  m_LocalPosition: {x: 8.73, y: 0.0208, z: 10}
   m_LocalScale: {x: 0.2868, y: 10.152508, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1365,7 +1365,7 @@ Transform:
   m_GameObject: {fileID: 1345864701}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.07, y: -0.03, z: 10}
+  m_LocalPosition: {x: 0.97, y: 0.35, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

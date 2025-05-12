@@ -197,6 +197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: 3000
+  explosionPrefab: {fileID: 5791786589371583111, guid: 05f83472bafde924185751ee7295cb6e, type: 3}
 --- !u!4 &3294708773984471293 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5844631516147679408, guid: f9f1d82b52ac1af4c907c1c4f2ecc44d, type: 3}

@@ -185,3 +185,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: 2000
+  explosionPrefab: {fileID: 5791786589371583111, guid: 05f83472bafde924185751ee7295cb6e, type: 3}
