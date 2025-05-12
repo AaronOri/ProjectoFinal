@@ -43,7 +43,7 @@ public class SceneTransitionManager : MonoBehaviour
         yield return StartCoroutine(FadeFromBlack()); // Fade in
     }
 
-    IEnumerator FadeToBlack()
+     public IEnumerator FadeToBlack()
     {
         float t = 0f;
         while (t < fadeDuration)

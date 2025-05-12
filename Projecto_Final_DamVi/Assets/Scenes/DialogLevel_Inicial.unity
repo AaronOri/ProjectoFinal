@@ -375,7 +375,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogText: {fileID: 1482127570}
   nextButton: {fileID: 1304515120}
-  nextButtonText: {fileID: 1482127570}
+  nextButtonText: {fileID: 735547118}
   nextSceneName: Level1
   typingSpeed: 0.05
 --- !u!1 &412120043
@@ -4048,8 +4048,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 941.0807, y: 1.124115}
-  m_SizeDelta: {x: 1249, y: 581.78}
+  m_AnchoredPosition: {x: 941.594, y: -1.4717}
+  m_SizeDelta: {x: 1266.039, y: 618.4851}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

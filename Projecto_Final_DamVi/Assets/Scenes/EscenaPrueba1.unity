@@ -254,7 +254,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf483cf610abc44408e5883302a7b9cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transicion: {fileID: 0}
 --- !u!4 &591779375
 Transform:
   m_ObjectHideFlags: 0
@@ -441,7 +440,7 @@ GameObject:
   - component: {fileID: 1147741249}
   - component: {fileID: 1147741248}
   m_Layer: 0
-  m_Name: SceneTransitionManager
+  m_Name: SceneTransitionManager1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
