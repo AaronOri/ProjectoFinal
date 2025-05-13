@@ -13,18 +13,15 @@ public class PlayerCollision : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy") || other.CompareTag("EnemyBullet"))
+        if (other.CompareTag("Enemy") || other.CompareTag("EnemyBullet") || other.CompareTag("Boss"))
         {
             playerHealth.RebDany();
 
-            // Si vols destruir la bala enemiga:
             if (other.CompareTag("EnemyBullet"))
             {
                 Destroy(other.gameObject);
             }
-
-
-
         }
     }
 }
+

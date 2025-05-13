@@ -4,11 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Undefined
-  - SpawnDetector
-  - Enemy
-  - EnemyBullet
   - BulletPlayer
+  - EnemyBullet
+  - Enemy
+  - Undefined
   layers:
   - Default
   - TransparentFX
