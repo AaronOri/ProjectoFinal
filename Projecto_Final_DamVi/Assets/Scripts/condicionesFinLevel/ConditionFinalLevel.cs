@@ -1,19 +1,27 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using System.Collections;
 
 public class ConditionFinalLevel : MonoBehaviour
 {
     [SerializeField]
-    public string noLivesSceneName; // Escena para cuando no quedan vidas
+    private string noLivesSceneName; // Escena para cuando no quedan vidas
 
     [SerializeField]
-    public PlayerHealth playerHealth; // Referencia directa al script que maneja las vidas
+    private PlayerHealth playerHealth; // Referencia al script que maneja las vidas
 
     [SerializeField]
-    public GameObject objectToWatch;
+    private GameObject objectToWatch; // Objeto a monitorear para ver si fue destruido
 
     [SerializeField]
-    public string objectDestroyedSceneName;
+    private string objectDestroyedSceneName; // Nombre de la escena para objeto destruido
+
+    [SerializeField]
+    private Image fadeOverlayImage; // Imagen transparente que se oscurecerá al máximo
+
+    [SerializeField]
+    private float fadeDuration = 1.5f; // Duración del oscurecimiento en segundos
 
     private bool sceneLoaded = false;
 
@@ -21,12 +29,25 @@ public class ConditionFinalLevel : MonoBehaviour
     {
         if (playerHealth == null)
         {
-            Debug.LogWarning("PlayerHealth no está asignado en ConditionInfinitLevel.");
+            Debug.LogWarning("PlayerHealth no está asignado en ConditionFinalLevel.");
         }
 
         if (objectToWatch == null)
         {
-            Debug.LogWarning("objectToWatch no está asignado en ConditionInfinitLevel.");
+            Debug.LogWarning("objectToWatch no está asignado en ConditionFinalLevel.");
+        }
+
+        if (fadeOverlayImage == null)
+        {
+            Debug.LogWarning("fadeOverlayImage no está asignada en ConditionFinalLevel.");
+        }
+        else
+        {
+            // Asegurarse que la imagen empiece completamente transparente
+            Color c = fadeOverlayImage.color;
+            c.a = 0f;
+            fadeOverlayImage.color = c;
+            fadeOverlayImage.gameObject.SetActive(true);
         }
     }
 
@@ -40,7 +61,7 @@ public class ConditionFinalLevel : MonoBehaviour
             int currentLives = playerHealth.GetCurrentLives();
             if (currentLives <= 0)
             {
-                LoadSceneNoLives();
+                StartCoroutine(FadeAndLoadScene(noLivesSceneName));
                 return;
             }
         }
@@ -48,40 +69,53 @@ public class ConditionFinalLevel : MonoBehaviour
         // Verificar si el objeto monitoreado fue destruido
         if (objectToWatch == null)
         {
-            LoadSceneObjectDestroyed();
+            StartCoroutine(FadeAndLoadScene(objectDestroyedSceneName));
             return;
         }
     }
 
-    private void LoadSceneNoLives()
+    private IEnumerator FadeAndLoadScene(string sceneName)
     {
-        if (sceneLoaded) return;
+        if (sceneLoaded) yield break;
 
         sceneLoaded = true;
 
-        if (!string.IsNullOrEmpty(noLivesSceneName))
+        if (fadeOverlayImage == null)
         {
-            SceneManager.LoadScene(noLivesSceneName);
+            Debug.LogError("No se puede oscurecer la pantalla porque fadeOverlayImage no está asignada.");
+            // Cargar la escena inmediatamente si no hay imagen para oscurecer
+            if (!string.IsNullOrEmpty(sceneName))
+            {
+                SceneManager.LoadScene(sceneName);
+            }
+            else
+            {
+                Debug.LogError("El nombre de la escena está vacío o es nulo.");
+            }
+            yield break;
         }
-        else
-        {
-            Debug.Log("No se cargará la escena de 'sin vidas' porque noLivesSceneName no está especificada.");
-        }
-    }
 
-    private void LoadSceneObjectDestroyed()
-    {
-        if (sceneLoaded) return;
-
-        sceneLoaded = true;
-
-        if (!string.IsNullOrEmpty(objectDestroyedSceneName))
+        if (string.IsNullOrEmpty(sceneName))
         {
-            SceneManager.LoadScene(objectDestroyedSceneName);
+            Debug.LogError("El nombre de la escena está vacío o es nulo.");
+            yield break;
         }
-        else
+
+        // Oscurecer la imagen aumentando su alfa de 0 a 1 en fadeDuration segundos
+        float elapsed = 0f;
+        Color c = fadeOverlayImage.color;
+        while (elapsed < fadeDuration)
         {
-            Debug.Log("No se cargará la escena para objeto destruido porque objectDestroyedSceneName no está especificada.");
+            elapsed += Time.deltaTime;
+            c.a = Mathf.Clamp01(elapsed / fadeDuration);
+            fadeOverlayImage.color = c;
+            yield return null;
         }
+        c.a = 1f;
+        fadeOverlayImage.color = c;
+
+        // Cargar la escena luego de completar el oscurecimiento
+        SceneManager.LoadScene(sceneName);
     }
 }
+

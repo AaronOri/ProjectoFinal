@@ -50,8 +50,12 @@ public class Dialog_Final : MonoBehaviour
     public void StartDialog()
     {
         dialogueEnded = false;
+
+        // Ensures that the button's text is not changed during the dialogue
         if (nextButtonText != null)
-            nextButtonText.text = "Siguiente"; // Button text at start
+        {
+            nextButtonText.text = nextButtonText.text; // Do not modify the button text
+        }
 
         sentences.Clear();
         foreach (string sentence in dialogSentences)
@@ -89,14 +93,14 @@ public class Dialog_Final : MonoBehaviour
     {
         if (dialogueEnded)
         {
-            // Load the next scene when dialogue finished
-            if (!string.IsNullOrEmpty(nextSceneName))
+            // Cuando el diálogo ha terminado, ejecutamos el fade out y luego cargamos la siguiente escena
+            if (SceneTransitionManager.Instance != null && !string.IsNullOrEmpty(nextSceneName))
             {
-                SceneManager.LoadScene(nextSceneName);
+                StartCoroutine(TransitionToSceneWithFade());
             }
             else
             {
-                Debug.LogWarning("Next scene name is not set!");
+                Debug.LogWarning("SceneTransitionManager not set or nextSceneName is missing!");
             }
             return;
         }
@@ -117,9 +121,15 @@ public class Dialog_Final : MonoBehaviour
     private void EndDialog()
     {
         dialogueEnded = true;
-        if (nextButtonText != null)
-        {
-            nextButtonText.text = "Bien Hecho!"; // Change button text to indicate continuing
-        }
+    }
+
+    // Corutina para hacer el fade out antes de cargar la siguiente escena
+    IEnumerator TransitionToSceneWithFade()
+    {
+        // Llamamos al fade out del SceneTransitionManager
+        yield return StartCoroutine(SceneTransitionManager.Instance.FadeToBlack());
+
+        // Ahora cargamos la nueva escena
+        SceneManager.LoadScene(nextSceneName);
     }
 }

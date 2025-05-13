@@ -1,7 +1,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using System.Collections;
 
-public class Dialog_TimerToScene : MonoBehaviour
+public class Dialog_TimerToSceneWithFade : MonoBehaviour
 {
     [SerializeField]
     public float countdownTime = 30f; // Tiempo para la cuenta regresiva
@@ -15,6 +17,13 @@ public class Dialog_TimerToScene : MonoBehaviour
     [SerializeField]
     public PlayerHealth playerHealth; // Referencia directa al script que maneja las vidas
 
+    [Header("Fade UI")]
+    [Tooltip("Imagen UI transparente que se oscurecerá al cargar la siguiente escena")]
+    public Image fadeImage; // Imagen para el fade (debe estar inicialmente transparente)
+
+    [Tooltip("Duración del efecto de fade")]
+    public float fadeDuration = 1f;
+
     private float countdownTimer;
     private bool sceneLoaded = false;
 
@@ -24,7 +33,17 @@ public class Dialog_TimerToScene : MonoBehaviour
 
         if (playerHealth == null)
         {
-            Debug.LogWarning("PlayerHealth no está asignado en Dialog_TimerToScene.");
+            Debug.LogWarning("PlayerHealth no está asignado en Dialog_TimerToSceneWithFade.");
+        }
+
+        // Inicializar imagen de fade transparente
+        if (fadeImage != null)
+        {
+            SetAlpha(0f);
+        }
+        else
+        {
+            Debug.LogWarning("fadeImage no está asignada en Dialog_TimerToSceneWithFade.");
         }
     }
 
@@ -40,40 +59,56 @@ public class Dialog_TimerToScene : MonoBehaviour
             int currentLives = playerHealth.GetCurrentLives();
             if (currentLives <= 0)
             {
-                LoadSceneNoLives();
+                sceneLoaded = true;
+                StartCoroutine(FadeAndLoadScene(noLivesSceneName));
                 return; // Evitar seguir con countdown
             }
         }
 
         if (countdownTimer <= 0f)
         {
-            LoadNextScene();
+            sceneLoaded = true;
+            StartCoroutine(FadeAndLoadScene(nextSceneName));
         }
     }
 
-    private void LoadNextScene()
+    IEnumerator FadeAndLoadScene(string sceneName)
     {
-        if (sceneLoaded) return;
+        yield return StartCoroutine(FadeToBlack());
 
-        sceneLoaded = true;
-
-        if (!string.IsNullOrEmpty(nextSceneName))
+        if (!string.IsNullOrEmpty(sceneName))
         {
-            SceneManager.LoadScene(nextSceneName);
+            SceneManager.LoadScene(sceneName);
         }
-        
+        else
+        {
+            Debug.LogWarning("Nombre de escena vacío. No se puede cargar la escena.");
+        }
     }
 
-    private void LoadSceneNoLives()
+    IEnumerator FadeToBlack()
     {
-        if (sceneLoaded) return;
+        if (fadeImage == null)
+            yield break;
 
-        sceneLoaded = true;
-
-        if (!string.IsNullOrEmpty(noLivesSceneName))
+        float t = 0f;
+        while (t < fadeDuration)
         {
-            SceneManager.LoadScene(noLivesSceneName);
+            t += Time.deltaTime;
+            SetAlpha(Mathf.Lerp(0f, 1f, t / fadeDuration));
+            yield return null;
         }
-       
+        SetAlpha(1f);
+    }
+
+    void SetAlpha(float alpha)
+    {
+        if (fadeImage != null)
+        {
+            Color c = fadeImage.color;
+            c.a = alpha;
+            fadeImage.color = c;
+        }
     }
 }
+

@@ -5,28 +5,48 @@ using System.Collections;
 
 public class SceneTransitionManager : MonoBehaviour
 {
-    public Image fadeImage; // Imagen UI que se usará para el fade
+    [Tooltip("Nombre de la imagen UI que se usará para el fade (buscada por nombre en escena)")]
+    public string fadeImageName = "FadeImage"; // Nombre del objeto Image a buscar
+
     public float fadeDuration = 1f; // Duración del fade
 
     public static SceneTransitionManager Instance; // Instancia singleton
 
+    private Image fadeImage; // Imagen UI usada para el fade, se obtiene buscando por nombre
+
     void Awake()
     {
-        // Singleton para mantenerlo entre escenas
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Esto hace que el SceneTransitionManager persista entre escenas
         }
         else
         {
-            Destroy(gameObject); // Si hay otro SceneTransitionManager, lo destruimos
+            Destroy(gameObject);
+            return;
+        }
+
+        // Buscar todas las imágenes en la escena
+        Image[] allImages = Object.FindObjectsOfType<Image>();
+
+        // Buscar la que tenga el nombre fadeImageName
+        foreach (Image img in allImages)
+        {
+            if (img.gameObject.name == fadeImageName)
+            {
+                fadeImage = img;
+                break;
+            }
+        }
+
+        if (fadeImage == null)
+        {
+            Debug.LogWarning($"No se encontró ninguna imagen UI llamada '{fadeImageName}' en la escena.");
         }
     }
 
     void Start()
     {
-        // Inicia con el fadeFromBlack al cargar la primera escena
         StartCoroutine(FadeFromBlack());
     }
 
@@ -37,22 +57,22 @@ public class SceneTransitionManager : MonoBehaviour
 
     IEnumerator FadeAndLoadScene(string sceneName)
     {
-        yield return StartCoroutine(FadeToBlack()); // Fade out
-        SceneManager.LoadScene(sceneName); // Cargar la nueva escena
-        yield return null; // Espera un frame para que la nueva escena cargue
-        yield return StartCoroutine(FadeFromBlack()); // Fade in
+        yield return StartCoroutine(FadeToBlack());
+        SceneManager.LoadScene(sceneName);
+        yield return null;
+        yield return StartCoroutine(FadeFromBlack());
     }
 
-     public IEnumerator FadeToBlack()
+    public IEnumerator FadeToBlack()
     {
         float t = 0f;
         while (t < fadeDuration)
         {
             t += Time.deltaTime;
-            SetAlpha(Mathf.Lerp(0f, 1f, t / fadeDuration)); // Fade out
+            SetAlpha(Mathf.Lerp(0f, 1f, t / fadeDuration));
             yield return null;
         }
-        SetAlpha(1f); // Asegura que esté completamente negro al final
+        SetAlpha(1f);
     }
 
     IEnumerator FadeFromBlack()
@@ -61,10 +81,10 @@ public class SceneTransitionManager : MonoBehaviour
         while (t < fadeDuration)
         {
             t += Time.deltaTime;
-            SetAlpha(Mathf.Lerp(1f, 0f, t / fadeDuration)); // Fade in
+            SetAlpha(Mathf.Lerp(1f, 0f, t / fadeDuration));
             yield return null;
         }
-        SetAlpha(0f); // Asegura que se haya vuelto transparente al final
+        SetAlpha(0f);
     }
 
     void SetAlpha(float alpha)
@@ -72,7 +92,7 @@ public class SceneTransitionManager : MonoBehaviour
         if (fadeImage != null)
         {
             Color color = fadeImage.color;
-            color.a = alpha; // Cambia la opacidad de la imagen
+            color.a = alpha;
             fadeImage.color = color;
         }
     }

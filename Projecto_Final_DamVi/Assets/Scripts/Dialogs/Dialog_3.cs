@@ -24,6 +24,7 @@ public class Dialog_3 : MonoBehaviour
         "Has conseguido diezmar las fuerzas enemigas hasta el punto en el que se ven obligadas a retirarse. Pero, acto seguido, un enorme avion de combate aparece. En esa maquina de guerra esta el general enemigo, buscando tu cabeza, y comienza un epico combate aereo en el que despues de lo que se sienten horas, acabas victorioso.",
         "-Soldado raso: Teniente Rocket! Se ha detectado un avion que se dirige al buque segun inteligencia es el General Khalid.\r\n\r\n-Teniente: Este ataque a la desesperada no le saldra segun lo previsto yo se lo impedire!\r\n\r\n-Soldado raso: Deja que llame refuerzos para ayudarle!\r\n",
         "-Teniente: No! De esto me he de encargar yo!\r\n\r\n-Comunicador: Aqui el General Khalid! Rocket se que estas alli ven a enfrentarte a mi si te atreves!! \r\n\r\n-Teniente: Yo de ti no me confiaria general, estas perdido!\r\n",
+        "Buena suerte!"
     };
 
     void Start()
@@ -52,8 +53,12 @@ public class Dialog_3 : MonoBehaviour
     public void StartDialog()
     {
         dialogueEnded = false;
+
+        // Ensures that the button's text is not changed during the dialogue
         if (nextButtonText != null)
-            nextButtonText.text = "Siguiente"; // Button text at start
+        {
+            nextButtonText.text = nextButtonText.text; // Do not modify the button text
+        }
 
         sentences.Clear();
         foreach (string sentence in dialogSentences)
@@ -91,14 +96,14 @@ public class Dialog_3 : MonoBehaviour
     {
         if (dialogueEnded)
         {
-            // Load the next scene when dialogue finished
-            if (!string.IsNullOrEmpty(nextSceneName))
+            // Cuando el diálogo ha terminado, ejecutamos el fade out y luego cargamos la siguiente escena
+            if (SceneTransitionManager.Instance != null && !string.IsNullOrEmpty(nextSceneName))
             {
-                SceneManager.LoadScene(nextSceneName);
+                StartCoroutine(TransitionToSceneWithFade());
             }
             else
             {
-                Debug.LogWarning("Next scene name is not set!");
+                Debug.LogWarning("SceneTransitionManager not set or nextSceneName is missing!");
             }
             return;
         }
@@ -119,9 +124,15 @@ public class Dialog_3 : MonoBehaviour
     private void EndDialog()
     {
         dialogueEnded = true;
-        if (nextButtonText != null)
-        {
-            nextButtonText.text = "Buena suerte!"; // Change button text to indicate continuing
-        }
+    }
+
+    // Corutina para hacer el fade out antes de cargar la siguiente escena
+    IEnumerator TransitionToSceneWithFade()
+    {
+        // Llamamos al fade out del SceneTransitionManager
+        yield return StartCoroutine(SceneTransitionManager.Instance.FadeToBlack());
+
+        // Ahora cargamos la nueva escena
+        SceneManager.LoadScene(nextSceneName);
     }
 }
