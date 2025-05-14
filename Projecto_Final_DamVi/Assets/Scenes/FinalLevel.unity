@@ -1009,7 +1009,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noLivesSceneName: GameOver_Scene
   playerHealth: {fileID: 291255935}
-  objectToWatch: {fileID: 1659777147}
+  objectToWatch: {fileID: 0}
   objectDestroyedSceneName: DialogLevel_Final
   fadeOverlayImage: {fileID: 179621883}
   fadeDuration: 1
@@ -1469,7 +1469,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1056433844}
   m_CullTransparentMesh: 1
---- !u!1 &1123718843
+--- !u!1 &1407619451
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1477,8 +1477,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1123718845}
-  - component: {fileID: 1123718844}
+  - component: {fileID: 1407619453}
+  - component: {fileID: 1407619452}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1486,27 +1486,30 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1123718844
+--- !u!114 &1407619452
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1123718843}
+  m_GameObject: {fileID: 1407619451}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 39e0855d47c8d8843a3d4451426ff813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: {fileID: 0}
   sceneToResetScore: Menus
---- !u!4 &1123718845
+  sceneToResetTimer: Menus
+  timerStartScenes:
+  - DialogLevel_Inicial
+  - NivelInfinito
+--- !u!4 &1407619453
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1123718843}
+  m_GameObject: {fileID: 1407619451}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -12.18, y: 2.9299462, z: -0.08362259}
@@ -1730,11 +1733,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1659777147 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7321543201928181650, guid: 7ae557cfee6e4eb469ad16eabfcb937d, type: 3}
-  m_PrefabInstance: {fileID: 1568942689}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1659777148 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8441810810968965670, guid: 7ae557cfee6e4eb469ad16eabfcb937d, type: 3}
@@ -2087,4 +2085,4 @@ SceneRoots:
   - {fileID: 551286379}
   - {fileID: 2156386566496875810}
   - {fileID: 709043052}
-  - {fileID: 1123718845}
+  - {fileID: 1407619453}
