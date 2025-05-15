@@ -23,7 +23,7 @@ public class Powerup : MonoBehaviour
                 switch (powerUpType)
                 {
                     case PowerUpType.Invencibilidad:
-                        player.ActivateInvincibility();
+                        player.ActivateInvencibili();
                         break;
                     case PowerUpType.Quickshot:
                         player.ActivateQuickshot();

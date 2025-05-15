@@ -198,6 +198,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 3000
   explosionPrefab: {fileID: 5791786589371583111, guid: 05f83472bafde924185751ee7295cb6e, type: 3}
+  spawnPrefabs:
+  - {fileID: 9205795922879315365, guid: 62eb8b44979772843b3a8dab6401fe63, type: 3}
+  - {fileID: 1560547743914451490, guid: 8fa7bf36b9edc3744bc41f058f160b60, type: 3}
+  - {fileID: 329364559327518224, guid: fcca80cfea6dc4e4caddc216daedfc2c, type: 3}
+  spawnProbability: 0.2
 --- !u!4 &3294708773984471293 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5844631516147679408, guid: f9f1d82b52ac1af4c907c1c4f2ecc44d, type: 3}

@@ -1,12 +1,14 @@
 using UnityEngine;
+using System.Collections;
 
 public class EnemyScore1 : MonoBehaviour
 {
-    [SerializeField] private int points = 1000; // Puntos a añadir cuando este enemigo muere
-    [SerializeField] private GameObject explosionPrefab; // Prefab de explosión a instanciar
-    [SerializeField] private GameObject spawnPrefab; // Prefab a spawnear con probabilidad
+    [SerializeField] private int points = 1000; // Points to add when this enemy dies
+    [SerializeField] private GameObject explosionPrefab; // Explosion prefab to instantiate
 
-    [SerializeField, Range(0f, 1f)] private float spawnProbability = 0.1f; // Probabilidad de spawn (10%)
+    [SerializeField] private GameObject[] spawnPrefabs; // Array of prefabs to spawn with probability
+
+    [SerializeField, Range(0f, 1f)] private float spawnProbability = 0.1f; // Spawn probability (10%)
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -18,30 +20,28 @@ public class EnemyScore1 : MonoBehaviour
 
     private void HandleBulletCollision(Collider2D bullet)
     {
-        // Sumar puntos si existe un ScoreManager en la escena
-        if (ScoreManager.Instance != null)
-        {
-            ScoreManager.Instance.AddPoints(points);
-        }
+        // Add points if a ScoreManager exists in the scene
+        ScoreManager.Instance?.AddPoints(points);
 
-        // Destruir la bala
+        // Destroy the bullet
         Destroy(bullet.gameObject);
 
-        // Crear explosión y destruir este enemigo
+        // Create explosion and destroy this enemy
         CreateExplosion();
 
-        // Intentar spawnear prefab con probabilidad
+        // Try to spawn a random prefab from the array with probability
         TrySpawnPrefab();
 
-        Destroy(gameObject);
+        // Use coroutine to delay enemy destruction for effects
+        StartCoroutine(DestroyEnemy());
     }
 
     private void CreateExplosion()
     {
-        if (explosionPrefab != null) // Validar que el prefab esté asignado
+        if (explosionPrefab != null) // Validate that the prefab is assigned
         {
             GameObject explosionInstance = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-            Destroy(explosionInstance, 1f); // Destruir la explosión tras 1 segundo
+            Destroy(explosionInstance, 1f); // Destroy the explosion after 1 second
         }
         else
         {
@@ -51,18 +51,36 @@ public class EnemyScore1 : MonoBehaviour
 
     private void TrySpawnPrefab()
     {
-        if (spawnPrefab != null)
+        if (spawnPrefabs != null && spawnPrefabs.Length > 0)
         {
             float roll = Random.Range(0f, 1f);
             if (roll <= spawnProbability)
             {
-                Instantiate(spawnPrefab, transform.position, Quaternion.identity);
+                // Pick one prefab randomly from the array
+                int index = Random.Range(0, spawnPrefabs.Length);
+                GameObject chosenPrefab = spawnPrefabs[index];
+
+                if (chosenPrefab != null)
+                {
+                    Instantiate(chosenPrefab, transform.position, Quaternion.identity);
+                }
+                else
+                {
+                    Debug.LogWarning($"Spawn prefab at index {index} is not assigned.");
+                }
             }
         }
         else
         {
-            Debug.LogWarning("Spawn prefab is not assigned in the inspector.");
+            Debug.LogWarning("Spawn prefabs array is empty or not assigned in the inspector.");
         }
+    }
+
+    private IEnumerator DestroyEnemy()
+    {
+        // Wait for a short duration to allow effects to play
+        yield return new WaitForSeconds(0.1f);
+        Destroy(gameObject);
     }
 }
 

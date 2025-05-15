@@ -2,10 +2,13 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] private int maxVides = 3;
-    [SerializeField] private GameObject[] vidaIcons;
+    [SerializeField] private int maxVides = 3; // Máximo de vidas
+    [SerializeField] private GameObject[] vidaIcons; // Iconos de vida en el HUD
+    [SerializeField] private float invincibilityDuration = 5f; // Duración de la invulnerabilidad
+    [SerializeField] public bool isInvulnerable = false; // Estado de invulnerabilidad
 
     private int videsActuals;
+    private float invincibilityTimer = 0f;
 
     void Start()
     {
@@ -13,8 +16,23 @@ public class PlayerHealth : MonoBehaviour
         ActualitzarHUD();
     }
 
+    void Update()
+    {
+        // Manejo del temporizador de invulnerabilidad
+        if (isInvulnerable)
+        {
+            invincibilityTimer -= Time.deltaTime;
+            if (invincibilityTimer <= 0f)
+            {
+                EndInvincibility();
+            }
+        }
+    }
+
     public void RebDany()
     {
+        if (isInvulnerable) return; // Ignorar daño si es invulnerable
+
         videsActuals--;
 
         if (videsActuals <= 0)
@@ -40,7 +58,7 @@ public class PlayerHealth : MonoBehaviour
     private void Morir()
     {
         Debug.Log("Jugador ha mort!");
-        // Aquí pots afegir explosió, desactivar jugador, pantalla de Game Over, etc.
+        // Aquí puedes añadir explosión, desactivar jugador, pantalla de Game Over, etc.
         gameObject.SetActive(false);
     }
 
@@ -49,6 +67,14 @@ public class PlayerHealth : MonoBehaviour
         return videsActuals;
     }
 
+    public void ActivateInvincibility(float duration)
+    {
+        isInvulnerable = true;
+        invincibilityTimer = duration;
+    }
+
+    public void EndInvincibility()
+    {
+        isInvulnerable = false;
+    }
 }
-
-

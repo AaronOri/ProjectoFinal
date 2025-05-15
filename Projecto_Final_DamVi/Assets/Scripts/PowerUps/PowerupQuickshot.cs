@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class PowerupQuickshot : MonoBehaviour
 {
-    [SerializeField] private float effeDuration = 5f; // Duración del power-up
+    [SerializeField] private float effectDuration = 5f; // Duración del power-up
+    [SerializeField] private float lifetime = 10f; // Tiempo para destruir el power-up automáticamente
+    [SerializeField] private float speedY = -3f; // Velocidad en el eje Y (puede ser negativa para bajar)
+
     private SimplePlayerMovement playerMovement;
 
     void Start()
@@ -15,6 +18,22 @@ public class PowerupQuickshot : MonoBehaviour
         {
             Debug.LogError("No se encontró el componente SimplePlayerMovement en el GameObject del jugador.");
         }
+
+        // Que el power-up cuelgue de la Main Camera
+        Transform mainCameraTransform = Camera.main?.transform;
+        if (mainCameraTransform != null)
+        {
+            transform.SetParent(mainCameraTransform);
+        }
+
+        // Destruir el objeto automáticamente tras 'lifetime' segundos
+        Destroy(gameObject, lifetime);
+    }
+
+    void Update()
+    {
+        // Movimiento constante en el eje Y
+        transform.Translate(Vector3.up * speedY * Time.deltaTime);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -30,5 +49,3 @@ public class PowerupQuickshot : MonoBehaviour
         }
     }
 }
-
-

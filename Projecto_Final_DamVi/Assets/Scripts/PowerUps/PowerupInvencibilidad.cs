@@ -1,66 +1,57 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PowerupInvencibilidad : MonoBehaviour
 {
     [SerializeField] private float invincibilityDuration = 5f; // Duración del power-up
-    [SerializeField] private SpriteRenderer playerSprite; // El sprite del jugador
-    [SerializeField] private float blinkInterval = 0.2f; // Intervalo de parpadeo
+    [SerializeField] private float speedY = -3f; // Velocidad en el eje Y (puede ser negativa para bajar)
+    [SerializeField] private float lifetime = 10f; // Tiempo para destruir el power-up automáticamente
 
-    private bool isInvincible = false;
-    private float invincibilityTimer = 0f;
+    private SimplePlayerMovement activeInve;
 
-    void Start()
+    private void Start()
     {
-        if (playerSprite == null)
-        {
-            playerSprite = GetComponent<SpriteRenderer>();
-        }
+        // Destruir el objeto automáticamente tras 'lifetime' segundos
+        Destroy(gameObject, lifetime);
     }
 
-    void Update()
+    private void Update()
     {
-        if (isInvincible)
-        {
-            invincibilityTimer -= Time.deltaTime;
+        // Movimiento constante en el eje Y
+        transform.Translate(Vector3.up * speedY * Time.deltaTime);
+    }
 
-            if (invincibilityTimer <= 0f)
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // Verificar si el objeto que colisiona tiene el tag "Player"
+        if (other.CompareTag("Player"))
+        {
+
+            // Obtener referencia al script SimplePlayerMovement para activar invencibilidad
+            activeInve = other.GetComponent<SimplePlayerMovement>();
+
+            if (activeInve != null && !activeInve.isInvincible)
             {
-                EndInvincibility();
+                // Activar invencibilidad y comunicar al sistema de salud
+                activeInve.ActivateInvencibili();
             }
+
+            // Obtener referencia al script PlayerHealth para activar invencibilidad
+            PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
+
+            if (playerHealth != null && !playerHealth.isInvulnerable)
+            {
+                // Activar invencibilidad en el sistema de salud
+                playerHealth.ActivateInvincibility(invincibilityDuration);
+
+            }
+            else
+            {
+                Debug.LogWarning("PlayerHealth no encontrado en Player o ya está invulnerable.");
+            }
+
+            // Destruir el power-up después de activarlo
+            Destroy(gameObject);
         }
-    }
-
-    public void ActivateInvincibility()
-    {
-        isInvincible = true;
-        invincibilityTimer = invincibilityDuration;
-        StartCoroutine(BlinkEffect());
-    }
-
-    private IEnumerator BlinkEffect()
-    {
-        while (isInvincible)
-        {
-            playerSprite.enabled = !playerSprite.enabled; // Alterna la visibilidad del sprite
-            yield return new WaitForSeconds(blinkInterval);
-        }
-
-        playerSprite.enabled = true; // Asegura que el sprite esté visible al terminar
-    }
-
-    private void EndInvincibility()
-    {
-        isInvincible = false;
-        StopCoroutine(BlinkEffect());
-        playerSprite.enabled = true; // Asegura que el sprite esté visible al final
-    }
-
-    // Método para activar la invencibilidad (puede llamarlo un power-up)
-    public void OnPickup()
-    {
-        ActivateInvincibility();
     }
 }
-

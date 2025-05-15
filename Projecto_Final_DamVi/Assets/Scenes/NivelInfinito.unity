@@ -1042,6 +1042,8 @@ MonoBehaviour:
   - {fileID: 484965523}
   - {fileID: 1535541922}
   - {fileID: 478800162}
+  invincibilityDuration: 5
+  isInvulnerable: 0
 --- !u!58 &937986097
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1153,10 +1155,6 @@ MonoBehaviour:
   verticalControlAmount: 4
   leanAngle: 15
   isInvincible: 0
-  invincibilityDuration: 5
-  quickshotActive: 0
-  quickshotDuration: 5
-  tripleshotActive: 0
 --- !u!212 &937986102
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1663,11 +1661,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39e0855d47c8d8843a3d4451426ff813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: {fileID: 0}
   sceneToResetScore: Menus
-  sceneToStartCounter: 
+  sceneToStartCounter1: 
+  sceneToStartCounter2: 
   sceneToStopCounter: 
   sceneToPrintTime: 
+  timeTextObjectName: TiempoTot
+  sceneToResetCounter: 
 --- !u!1 &1813006881
 GameObject:
   m_ObjectHideFlags: 0

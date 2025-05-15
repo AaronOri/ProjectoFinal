@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SimplePlayerMovement : MonoBehaviour
@@ -10,12 +9,12 @@ public class SimplePlayerMovement : MonoBehaviour
     [SerializeField] float leanAngle = 15f;
 
     public bool isInvincible = false;  // Para la invencibilidad
-    public float invincibilityDuration = 5f;  // Duración de la invencibilidad
-    public bool quickshotActive = false;  // Para el power-up de quickshot
-    public float quickshotDuration = 5f;  // Duración de quickshot
-    public bool tripleshotActive = false;  // Para el power-up de tripleshot
+    private float invincibilityDuration = 7f;  // Duración de la invencibilidad
+    private bool quickshotActive = false;  // Para el power-up de quickshot
+    private float quickshotDuration = 5f;  // Duración de quickshot
+    private bool tripleshotActive = false;  // Para el power-up de tripleshot
 
-    SpriteRenderer spriteRenderer;
+    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
@@ -24,7 +23,14 @@ public class SimplePlayerMovement : MonoBehaviour
 
     void Update()
     {
-        // Movimiento del jugador
+        HandleMovement();
+        HandleInvincibility();
+        HandleQuickshot();
+        HandleTripleshot();
+    }
+
+    private void HandleMovement()
+    {
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical") * verticalControlAmount;
         Vector3 movement = new Vector3(moveX * horizontalSpeed, verticalScrollSpeed + moveY, 0f) * Time.deltaTime;
@@ -33,23 +39,40 @@ public class SimplePlayerMovement : MonoBehaviour
         // Inclinación de la nave (efecto estético)
         float targetZRotation = -moveX * leanAngle;
         transform.rotation = Quaternion.Euler(0f, 0f, targetZRotation);
+    }
 
-        // Lógica para invencibilidad
+    private void HandleInvincibility()
+    {
         if (isInvincible)
         {
             // Hacer que la nave parpadee
             spriteRenderer.enabled = !spriteRenderer.enabled;
-
-            // Temporizador de invencibilidad
-            invincibilityDuration -= Time.deltaTime;
-            if (invincibilityDuration <= 0)
-            {
-                isInvincible = false;
-                spriteRenderer.enabled = true;  // Asegurarse de que la nave sea visible
-            }
         }
+    }
 
-        // Lógica para quickshot
+    public void ActivateInvencibili()
+    {
+        if (!isInvincible)
+        {
+            isInvincible = true;
+            StartCoroutine(InvincibilityCoroutine());
+        }
+    }
+
+    private IEnumerator InvincibilityCoroutine()
+    {
+        float timer = invincibilityDuration;
+        while (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            yield return null; // Esperar un frame
+        }
+        isInvincible = false;
+        spriteRenderer.enabled = true;  // Asegurarse de que la nave sea visible
+    }
+
+    private void HandleQuickshot()
+    {
         if (quickshotActive)
         {
             quickshotDuration -= Time.deltaTime;
@@ -58,21 +81,14 @@ public class SimplePlayerMovement : MonoBehaviour
                 quickshotActive = false;
             }
         }
+    }
 
-        // Lógica para tripleshot
-        if (tripleshotActive)
-        {
-            // Puedes manejar la mecánica de tripleshot aquí o en el script de disparo
-        }
+    private void HandleTripleshot()
+    {
+        // Puedes manejar la mecánica de tripleshot aquí o en el script de disparo
     }
 
     // Métodos para activar power-ups
-    public void ActivateInvincibility()
-    {
-        isInvincible = true;
-        invincibilityDuration = 5f;  // Reseteamos el tiempo de invencibilidad
-    }
-
     public void ActivateQuickshot()
     {
         quickshotActive = true;
