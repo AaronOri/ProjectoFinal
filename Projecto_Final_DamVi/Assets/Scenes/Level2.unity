@@ -890,7 +890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52e9de950269c0145844a94b1a5479e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countdownTime: 10
+  countdownTime: 90
   nextSceneName: DialogLevel_3
   noLivesSceneName: GameOver_Scene
   playerHealth: {fileID: 165498312}

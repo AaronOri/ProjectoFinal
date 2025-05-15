@@ -1009,7 +1009,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noLivesSceneName: GameOver_Scene
   playerHealth: {fileID: 291255935}
-  objectToWatch: {fileID: 0}
+  objectToWatch: {fileID: 2008661479}
   objectDestroyedSceneName: DialogLevel_Final
   fadeOverlayImage: {fileID: 179621883}
   fadeDuration: 1
@@ -1528,6 +1528,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 551286379}
     m_Modifications:
+    - target: {fileID: 404713163464248454, guid: 7ae557cfee6e4eb469ad16eabfcb937d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 144
+      objectReference: {fileID: 0}
     - target: {fileID: 1048570098717647816, guid: 7ae557cfee6e4eb469ad16eabfcb937d, type: 3}
       propertyPath: maxX
       value: 5
@@ -2023,6 +2027,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2008661479 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7321543201928181650, guid: 7ae557cfee6e4eb469ad16eabfcb937d, type: 3}
+  m_PrefabInstance: {fileID: 1568942689}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2156386566496875810
 PrefabInstance:
   m_ObjectHideFlags: 0
