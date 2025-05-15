@@ -1009,7 +1009,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noLivesSceneName: GameOver_Scene
   playerHealth: {fileID: 291255935}
-  objectToWatch: {fileID: 1659777147}
+  objectToWatch: {fileID: 0}
   objectDestroyedSceneName: DialogLevel_Final
   fadeOverlayImage: {fileID: 179621883}
   fadeDuration: 1
@@ -1498,8 +1498,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39e0855d47c8d8843a3d4451426ff813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: {fileID: 0}
   sceneToResetScore: Menus
+  sceneToStartCounter1: 
+  sceneToStartCounter2: 
+  sceneToStopCounter: 
+  sceneToPrintTime: 
+  timeTextObjectName: TiempoTot
+  sceneToResetCounter: 
 --- !u!4 &1123718845
 Transform:
   m_ObjectHideFlags: 0
@@ -1730,11 +1735,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1659777147 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7321543201928181650, guid: 7ae557cfee6e4eb469ad16eabfcb937d, type: 3}
-  m_PrefabInstance: {fileID: 1568942689}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1659777148 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8441810810968965670, guid: 7ae557cfee6e4eb469ad16eabfcb937d, type: 3}

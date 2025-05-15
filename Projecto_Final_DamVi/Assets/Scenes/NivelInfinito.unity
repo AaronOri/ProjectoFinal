@@ -821,7 +821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 619aa4c92c98cb741a1d64fec97b62ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noLivesSceneName: GameOver_Scene
+  noLivesSceneName: Win_Scene
   playerHealth: {fileID: 937986096}
   fadeImage: {fileID: 1069084546}
   fadeDuration: 1
@@ -1665,6 +1665,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHealth: {fileID: 0}
   sceneToResetScore: Menus
+  sceneToStartCounter: 
+  sceneToStopCounter: 
+  sceneToPrintTime: 
 --- !u!1 &1813006881
 GameObject:
   m_ObjectHideFlags: 0
