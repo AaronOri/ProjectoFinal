@@ -1,0 +1,5 @@
+Host: mysql.dam.inspedralbes.cat
+Port: 3306
+Nom base de dades: joc_1942_mayday_ironwings
+Usuari: el_teu_usuari
+Contrasenya: la_teva_contrasenya

@@ -1,0 +1,7 @@
+Accés a la base de dades Hestia:
+
+1. Accedeix al panell Hestia: https://dam.inspedralbes.cat:8083
+2. Crea la base de dades: joc_1942_mayday_ironwings
+3. Crea un usuari de base de dades
+4. Dona-li accés remot (host = %)
+5. Desa les credencials a ConnexioBDD.java
