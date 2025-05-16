@@ -1,10 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
 {
     private PlayerHealth playerHealth;
+
+    [SerializeField] private AudioClip powerUpSound;
+    [SerializeField] private AudioSource audioSource;
 
     void Start()
     {
@@ -22,6 +23,12 @@ public class PlayerCollision : MonoBehaviour
                 Destroy(other.gameObject);
             }
         }
+        else if (other.CompareTag("PowerUp"))
+        {
+            if (audioSource != null && powerUpSound != null)
+            {
+                audioSource.PlayOneShot(powerUpSound);
+            }
+        }
     }
 }
-

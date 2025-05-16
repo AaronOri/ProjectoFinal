@@ -43,7 +43,8 @@ public class EnemyAimShooter : MonoBehaviour
         GameObject bullet = Instantiate(
             bulletPrefab,
             firePoint.position,
-            Quaternion.Euler(0f, 0f, angle + 90f) // Ajuste porque la bala apunta hacia abajo
+            Quaternion.Euler(0f, 0f, angle + 90f),
+            Camera.main != null ? Camera.main.transform : null  // Padre: cámara principal o null si no hay cámara
         );
 
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();

@@ -7,6 +7,12 @@ using UnityEngine.SceneManagement;
 
 public class Dialog_Final : MonoBehaviour
 {
+
+    [SerializeField] private AudioClip typingSound;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private int lettersPerSound = 10; // cada cuántas letras suena
+
+
     public TMP_Text dialogText;       // Referencia al componente Text de la UI donde aparecerá el diálogo
     public Button nextButton;         // Referencia al botón de la UI que avanza el diálogo
     public TMP_Text nextButtonText;   // Referencia al texto del botón para cambiar su texto dinámicamente
@@ -81,11 +87,21 @@ public class Dialog_Final : MonoBehaviour
     {
         isTyping = true;
         dialogText.text = "";
+        int letterCount = 0;
+
         foreach (char letter in sentence.ToCharArray())
         {
             dialogText.text += letter;
+            letterCount++;
+
+            if (audioSource != null && typingSound != null && letterCount % lettersPerSound == 0)
+            {
+                audioSource.PlayOneShot(typingSound);
+            }
+
             yield return new WaitForSeconds(typingSpeed);
         }
+
         isTyping = false;
     }
 

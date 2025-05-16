@@ -199,6 +199,7 @@ MonoBehaviour:
   - {fileID: 1560547743914451490, guid: 8fa7bf36b9edc3744bc41f058f160b60, type: 3}
   - {fileID: 329364559327518224, guid: fcca80cfea6dc4e4caddc216daedfc2c, type: 3}
   spawnProbability: 0.2
+  deathSound: {fileID: 8300000, guid: e034394665b7af54fbc0fa2e8e762d25, type: 3}
 --- !u!4 &4409323673533374841 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3181050512620720420, guid: cb928de926273bd469e9624a31df1849, type: 3}

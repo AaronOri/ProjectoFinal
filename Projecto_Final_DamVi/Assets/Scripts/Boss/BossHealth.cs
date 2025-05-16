@@ -6,8 +6,13 @@ using UnityEngine.UI;
 public class BossHealth : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 100;
-    [SerializeField] private Slider healthSlider;                 // slider en comptes d’Image
+    [SerializeField] private Slider healthSlider;                
     [SerializeField] private GameObject explosionEffect;
+
+    [SerializeField] private AudioClip phase2LoopSound;
+    [SerializeField] private AudioSource phase2AudioSource;
+    [SerializeField] private AudioClip deathSound;
+    [SerializeField] private AudioSource audioSource;
 
     private int currentHealth;
     private bool isPhase2 = false;
@@ -26,7 +31,7 @@ public class BossHealth : MonoBehaviour
 
         if (healthSlider != null)
         {
-            healthSlider.minValue = 0;               // ✅ Correcció afegida aquí
+            healthSlider.minValue = 0;               
             healthSlider.maxValue = maxHealth;
             healthSlider.value = maxHealth;
         }
@@ -35,6 +40,7 @@ public class BossHealth : MonoBehaviour
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
+        Debug.Log($"Boss recibió daño. Vida actual: {currentHealth}");
 
         if (healthSlider != null)
             healthSlider.value = currentHealth;
@@ -42,16 +48,26 @@ public class BossHealth : MonoBehaviour
         if (!isPhase2 && currentHealth <= maxHealth / 4)
         {
             isPhase2 = true;
-
             shooter?.EnterPhase2();
             movement?.EnterPhase2();
 
-            // explosions cada 0.5 s i lligades al boss
+            if (phase2AudioSource != null && phase2LoopSound != null)
+            {
+                phase2AudioSource.clip = phase2LoopSound;
+                phase2AudioSource.loop = true;
+                phase2AudioSource.Play();
+            }
+
             InvokeRepeating(nameof(RandomExplosion), 0f, 0.5f);
         }
 
-        if (currentHealth <= 0) Die();
+        if (currentHealth <= 0)
+        {
+            Debug.Log("Boss debería morir ahora.");
+            Die();
+        }
     }
+
 
     void RandomExplosion()
     {
@@ -63,10 +79,14 @@ public class BossHealth : MonoBehaviour
 
     void Die()
     {
-        CancelInvoke();                       // atura explosions de fase 2
+        CancelInvoke();
+
+        if (audioSource != null && deathSound != null)
+            audioSource.PlayOneShot(deathSound);
+
         Instantiate(explosionEffect, transform.position, Quaternion.identity, null);
 
-        bossScore?.GiveScore();               // punts (si uses BossScore.cs)
+        bossScore?.GiveScore();
 
         Destroy(gameObject);
     }

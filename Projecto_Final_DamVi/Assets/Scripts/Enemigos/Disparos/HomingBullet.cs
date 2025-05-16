@@ -19,6 +19,13 @@ public class HomingBullet : MonoBehaviour
         player = GameObject.FindWithTag("Player")?.transform;
         homingTimer = homingDuration;
         Destroy(gameObject, lifetime);
+
+        // Hacer que la bala sea hija de la cámara principal
+        Camera mainCam = Camera.main;
+        if (mainCam != null)
+        {
+            transform.SetParent(mainCam.transform);
+        }
     }
 
     void FixedUpdate()

@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - SpawnDetector
   - Boss
+  - PowerUp
   layers:
   - Default
   - TransparentFX

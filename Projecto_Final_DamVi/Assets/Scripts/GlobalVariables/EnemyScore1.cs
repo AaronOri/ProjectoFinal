@@ -8,7 +8,9 @@ public class EnemyScore1 : MonoBehaviour
 
     [SerializeField] private GameObject[] spawnPrefabs; // Array of prefabs to spawn with probability
 
-    [SerializeField, Range(0f, 1f)] private float spawnProbability = 0.1f; // Spawn probability (10%)
+    [SerializeField, Range(0f, 1f)] private float spawnProbability = 0.2f; // Spawn probability (20%)
+
+    [SerializeField] private AudioClip deathSound;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -38,14 +40,16 @@ public class EnemyScore1 : MonoBehaviour
 
     private void CreateExplosion()
     {
-        if (explosionPrefab != null) // Validate that the prefab is assigned
+        if (explosionPrefab != null)
         {
             GameObject explosionInstance = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-            Destroy(explosionInstance, 1f); // Destroy the explosion after 1 second
+            Destroy(explosionInstance, 1f);
         }
-        else
+
+        // Reproducir sonido de destrucción
+        if (deathSound != null)
         {
-            Debug.LogWarning("Explosion prefab is not assigned in the inspector.");
+            AudioSource.PlayClipAtPoint(deathSound, transform.position);
         }
     }
 
@@ -82,5 +86,6 @@ public class EnemyScore1 : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         Destroy(gameObject);
     }
+
 }
 

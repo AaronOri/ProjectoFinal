@@ -41,11 +41,20 @@ public class EnemyShooter : MonoBehaviour
     void Shoot(Vector2 direction)
     {
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+
+        // Hacer que la bala sea hija de la cámara principal
+        Camera mainCam = Camera.main;
+        if (mainCam != null)
+        {
+            bullet.transform.SetParent(mainCam.transform);
+        }
+
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         if (rb != null)
         {
             rb.velocity = direction.normalized * bulletSpeed;
         }
     }
+
 }
 
