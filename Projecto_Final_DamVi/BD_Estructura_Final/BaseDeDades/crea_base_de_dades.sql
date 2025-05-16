@@ -1,5 +1,4 @@
-CREATE DATABASE IF NOT EXISTS joc_1942_mayday_ironwings;
-USE joc_1942_mayday_ironwings;
+USE Joc_1942_MayDay_IronWings;
 
 CREATE TABLE IF NOT EXISTS jugadors (
     id INT AUTO_INCREMENT PRIMARY KEY,

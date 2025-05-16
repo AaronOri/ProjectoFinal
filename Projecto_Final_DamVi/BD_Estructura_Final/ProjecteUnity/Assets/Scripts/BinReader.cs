@@ -5,6 +5,11 @@ using MongoDB.Bson.IO;
 
 public class BinReader : MonoBehaviour
 {
+    void Awake()
+    {
+    DontDestroyOnLoad(this.gameObject);
+    }
+
     void Start()
     {
         string path = Path.Combine(Application.dataPath, "../Java_Gestio_BDD/Jugadors.bson");
