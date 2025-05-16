@@ -14,22 +14,23 @@ public class JsonExporter : MonoBehaviour
         public int losses;
     }
 
+    public string username = "PlayerOne";
+
     void Awake()
     {
-    DontDestroyOnLoad(this.gameObject);
-    }   
-
+        DontDestroyOnLoad(this.gameObject);
+    }
 
     public void ExportarJugador()
     {
         Jugador j = new Jugador
         {
-            username = "PlayerOne",
-            score = 4200,
-            timeSeconds = 153.5f,
-            shotsFired = 87,
-            wins = 3,
-            losses = 1
+            username = username,
+            score = ScoreManager.Instance != null ? ScoreManager.Instance.GetCurrentScore() : 0,
+            timeSeconds = ScoreManager.Instance != null ? ScoreManager.Instance.GetElapsedTime() : 0f,
+            shotsFired = GameStats.TotalShotsFired,
+            wins = GameStats.TotalWins,
+            losses = GameStats.TotalLosses
         };
 
         string json = JsonUtility.ToJson(j, true);
@@ -39,3 +40,4 @@ public class JsonExporter : MonoBehaviour
         Debug.Log("✅ Fitxer jugador.json exportat: " + path);
     }
 }
+

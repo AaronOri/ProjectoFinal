@@ -1,14 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using TMPro; // Solo si usas TMP_InputField; si usas InputField normal elimina esta línea
+using TMPro; // Solo si usas TMP_InputField; si usas InputField normal elimina esta lÃ­nea
 
 public class InsertName : MonoBehaviour
 {
     [Tooltip("InputField donde el usuario introduce texto")]
     public TMP_InputField inputField; // Cambia a InputField si no usas TextMeshPro
 
-    [Tooltip("Botón que se activa si el texto no está vacío")]
+    [Tooltip("BotÃ³n que se activa si el texto no estÃ¡ vacÃ­o")]
     public Button proceedButton;
 
     [Tooltip("Nombre exacto de la escena que se va a cargar")]
@@ -23,40 +23,48 @@ public class InsertName : MonoBehaviour
         }
         if (proceedButton == null)
         {
-            Debug.LogError("Botón no asignado en InsertName.");
+            Debug.LogError("BotÃ³n no asignado en InsertName.");
             return;
         }
 
-        // Inicializa botón desactivado
+        // Inicializa botÃ³n desactivado
         proceedButton.interactable = false;
 
-        // Añade listener para activar o desactivar botón según texto
+        // AÃ±ade listener para activar o desactivar botÃ³n segÃºn texto
         inputField.onValueChanged.AddListener(OnInputValueChanged);
     }
 
     // Se llama cada vez que cambia el texto del InputField
     private void OnInputValueChanged(string text)
     {
-        // Activa el botón si hay texto (no vacío ni solo espacios)
+        // Activa el botÃ³n si hay texto (no vacÃ­o ni solo espacios)
         proceedButton.interactable = !string.IsNullOrWhiteSpace(text);
     }
 
-    // Método público para asignar al evento OnClick del botón en Inspector
+    // MÃ©todo pÃºblico para asignar al evento OnClick del botÃ³n en Inspector
     public void ProceedToScene()
     {
         if (string.IsNullOrEmpty(sceneName))
         {
-            Debug.LogWarning("El nombre de la escena no está asignado en InsertName.");
+            Debug.LogWarning("El nombre de la escena no estÃ¡ asignado en InsertName.");
             return;
         }
-        // Verifica que la escena esté en Build Settings para evitar errores
+        // Verifica que la escena estÃ¡ en Build Settings para evitar errores
         if (!Application.CanStreamedLevelBeLoaded(sceneName))
         {
-            Debug.LogError($"La escena '{sceneName}' no está agregada en Build Settings o el nombre es incorrecto.");
+            Debug.LogError($"La escena '{sceneName}' no estÃ¡ agregada en Build Settings o el nombre es incorrecto.");
             return;
+        }
+
+        // âœ… INTEGRACIÃ“: Assigna el nom a JsonExporter si existeix
+        JsonExporter exporter = FindObjectOfType<JsonExporter>();
+        if (exporter != null)
+        {
+            exporter.username = inputField.text;
         }
 
         // Carga la escena asignada
         SceneManager.LoadScene(sceneName);
     }
 }
+

@@ -24,7 +24,7 @@ public class BinReader : MonoBehaviour
 
         if (!File.Exists(path))
         {
-            Debug.LogWarning("⚠ No s'ha trobat Jugadors.bson");
+            Debug.LogWarning("No s'ha trobat Jugadors.bson");
             return;
         }
 
@@ -37,7 +37,7 @@ public class BinReader : MonoBehaviour
         string username = doc["username"].AsString;
         int score = doc["score"].AsInt32;
 
-        Debug.Log($"🏅 Rànquing jugador: {username} - Puntuació: {score}");
+        Debug.Log($"Rànquing jugador: {username} - Puntuació: {score}");
     }
 }
 

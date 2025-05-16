@@ -18,10 +18,10 @@ public class ConditionFinalLevel : MonoBehaviour
     private string objectDestroyedSceneName; // Nombre de la escena para objeto destruido
 
     [SerializeField]
-    private Image fadeOverlayImage; // Imagen transparente que se oscurecer· al m·ximo
+    private Image fadeOverlayImage; // Imagen transparente que se oscurecer√° al m√°ximo
 
     [SerializeField]
-    private float fadeDuration = 1.5f; // DuraciÛn del oscurecimiento en segundos
+    private float fadeDuration = 1.5f; // Duraci√≥n del oscurecimiento en segundos
 
     private bool sceneLoaded = false;
 
@@ -29,17 +29,17 @@ public class ConditionFinalLevel : MonoBehaviour
     {
         if (playerHealth == null)
         {
-            Debug.LogWarning("PlayerHealth no est· asignado en ConditionFinalLevel.");
+            Debug.LogWarning("PlayerHealth no est√° asignado en ConditionFinalLevel.");
         }
 
         if (objectToWatch == null)
         {
-            Debug.LogWarning("objectToWatch no est· asignado en ConditionFinalLevel.");
+            Debug.LogWarning("objectToWatch no est√° asignado en ConditionFinalLevel.");
         }
 
         if (fadeOverlayImage == null)
         {
-            Debug.LogWarning("fadeOverlayImage no est· asignada en ConditionFinalLevel.");
+            Debug.LogWarning("fadeOverlayImage no est√° asignada en ConditionFinalLevel.");
         }
         else
         {
@@ -55,12 +55,13 @@ public class ConditionFinalLevel : MonoBehaviour
     {
         if (sceneLoaded) return;
 
-        // Verificar vidas si playerHealth est· asignado
+        // Verificar vidas si playerHealth est√° asignado
         if (playerHealth != null)
         {
             int currentLives = playerHealth.GetCurrentLives();
             if (currentLives <= 0)
             {
+                GameStats.RegisterLoss();// Registra derrota
                 StartCoroutine(FadeAndLoadScene(noLivesSceneName));
                 return;
             }
@@ -69,6 +70,7 @@ public class ConditionFinalLevel : MonoBehaviour
         // Verificar si el objeto monitoreado fue destruido
         if (objectToWatch == null)
         {
+            GameStats.RegisterWin();// Registra victoria
             StartCoroutine(FadeAndLoadScene(objectDestroyedSceneName));
             return;
         }
@@ -82,7 +84,7 @@ public class ConditionFinalLevel : MonoBehaviour
 
         if (fadeOverlayImage == null)
         {
-            Debug.LogError("No se puede oscurecer la pantalla porque fadeOverlayImage no est· asignada.");
+            Debug.LogError("No se puede oscurecer la pantalla porque fadeOverlayImage no est√° asignada.");
             // Cargar la escena inmediatamente si no hay imagen para oscurecer
             if (!string.IsNullOrEmpty(sceneName))
             {
@@ -90,14 +92,14 @@ public class ConditionFinalLevel : MonoBehaviour
             }
             else
             {
-                Debug.LogError("El nombre de la escena est· vacÌo o es nulo.");
+                Debug.LogError("El nombre de la escena est√° vac√≠o o es nulo.");
             }
             yield break;
         }
 
         if (string.IsNullOrEmpty(sceneName))
         {
-            Debug.LogError("El nombre de la escena est· vacÌo o es nulo.");
+            Debug.LogError("El nombre de la escena est√° vac√≠o o es nulo.");
             yield break;
         }
 
@@ -118,4 +120,5 @@ public class ConditionFinalLevel : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 }
+
 

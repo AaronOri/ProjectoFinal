@@ -15,10 +15,10 @@ public class ScoreManager : MonoBehaviour
     // Referencia al texto del tiempo
     private TextMeshProUGUI timeText;
 
-    // Puntuación actual
+    // Puntuaciï¿½n actual
     private int currentScore = 0;
 
-    // Nombre de la escena para resetear la puntuación
+    // Nombre de la escena para resetear la puntuaciï¿½n
     [SerializeField]
     private string sceneToResetScore = "";
 
@@ -107,7 +107,7 @@ public class ScoreManager : MonoBehaviour
             PrintTime();
         }
 
-        // Resetea la puntuación si la escena cargada es la especificada
+        // Resetea la puntuaciï¿½n si la escena cargada es la especificada
         if (!string.IsNullOrEmpty(sceneToResetScore) && scene.name == sceneToResetScore)
         {
             ResetScore();
@@ -142,14 +142,14 @@ public class ScoreManager : MonoBehaviour
 
     public void AddPoints(int points)
     {
-        // Agregar puntos a la puntuación actual
+        // Agregar puntos a la puntuaciï¿½n actual
         currentScore += points;
         UpdateScoreText();
     }
 
     private void UpdateScoreText()
     {
-        // Actualizar el texto de la puntuación
+        // Actualizar el texto de la puntuaciï¿½n
         if (scoreText != null)
         {
             scoreText.text = currentScore.ToString("D7"); // Ejemplo: 0000100
@@ -158,7 +158,7 @@ public class ScoreManager : MonoBehaviour
 
     public void ResetScore()
     {
-        // Resetear la puntuación
+        // Resetear la puntuaciï¿½n
         currentScore = 0;
         UpdateScoreText();
     }
@@ -182,4 +182,15 @@ public class ScoreManager : MonoBehaviour
         endTime = 0f;
         elapsedTime = 0f;
     }
+
+    public int GetCurrentScore()
+    {
+    return currentScore;
+    }
+
+    public float GetElapsedTime()
+    {
+    return elapsedTime;
+    }
+
 }
